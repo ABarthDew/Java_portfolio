@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Jonah Weimer</title>
+<title>ABarthDew</title>
 	<link rel="shortcut icon" href="img/logo.png">
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -82,7 +82,7 @@
 	.intromg{position:absolute; left:50%; margin-left:-200px;}
 	.mg{color:#f5f5f5; font-size:30px;}
 	.container{margin-top:80px;}
-	.container h5{color:#f5f5f5;}
+	.container h5, h6{color:#f5f5f5;}
 	.planetIcon img{cursor: pointer; animation-duration: 2s; animation-delay: 2s;}
 	.hero1{animation: hero-octonaut1 2s alternate ease-in-out infinite;}
 	.hero2{animation: hero-octonaut2 2s alternate ease-in-out infinite;}
@@ -528,7 +528,7 @@
                $('html, body').stop().animate({scrollTop:$($(this).attr('href')).offset().top-60}); 
                $(this).attr('data-dismiss', 'modal'); 
             });
-            $('.nav-link').on('click', function(){
+            $('.navbar-nav .nav-link').on('click', function(){
             	$('html, body').stop().animate({scrollTop:$($(this).attr('href')).offset().top-60});
             });
             $('.planetIcon img').on('click', function(){
@@ -568,7 +568,7 @@
             </ul>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -662,11 +662,23 @@
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-4 mg my">
 				 : 인터넷상에 생성된 나만의 정원에서 수확물 구독하기
 			</div> 
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 my">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 mb-2 my">
 				<h5>&ldquo;단순히 인터넷 쇼핑을 하는 것만이 아닌,</h5>  
 				<h5>그곳에 나의 정원을 만들고 소유하는 건 어떨까?&rdquo;</h5>
 				<h5 class="mt-4">&ldquo;가지고는 싶은데, 관리하기는 귀찮고...</h5>
 				<h5>그렇다면 공유 정원과 비밀 정원으로 공간을 나누자!&rdquo;</h5>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-5 my">
+			  <button type="button" class="btn btn-outline-light btn-sm">#Spring</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#Maven</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#MyBatis</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#JSP</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#JSON</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#JDBC</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#Ajax</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#Javascript</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#JQuery</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#GitHub</button>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 mygardenPPT1 my">
             	<script>
@@ -703,17 +715,41 @@
 			  </div>
 			  <div class="tab-pane fade" id="nav-mypage" role="tabpanel" aria-labelledby="nav-mypage-tab">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>로그인</li></h5>
+	            	<h5 class="text-left mt-1"><li>일반 로그인, 소셜 로그인</li></h5>
+	            	<h6 class="text-left font-weight-bold">* 네이버, 카카오 로그인 API</h6>
+	            	<h6 class="text-left">-소셜 로그인을 이용하면 번거로운 가입 과정을 거치지 않아도 사이트 이용 가능</h6>
+	            	<h6 class="text-left">-회원가입 연동, 로그아웃, 회원탈퇴가 가능 </h6>
 	            	<img src="ppt/mygarden-login.png" width="100%">
 	            	<h5 class="text-left mt-3"><li>회원가입</li></h5>
+	            	<h6 class="text-left">-regex로 형식 검증 / ajax로 실시간 중복여부 검증</h6>
+	            	<h6 class="text-left">-프로필 파일 확장자 검증</h6>
+	            	<h6 class="text-left">-smtp로 발송된 인증번호 검증 후 나머지 양식이 slideDown됨</h6>
 	            	<img src="ppt/mygarden-join.png" width="100%">
 	            	<h5 class="text-left mt-3"><li>마이페이지</li></h5>
+	            	<h6 class="text-left">-사용자의 모든 정보 제공</h6>
+	            	<h6 class="text-left">-개인정보, 구매내역, 최근 구독내역 등을 열람할 수 있으며, 회원탈퇴 메뉴도 제공</h6>
+	            	<h6 class="text-left">-상단 회색 박스의 정원이름, 프로필 사진은 ajax로 실시간 수정이 가능</h6>
+	            	<h6 class="text-left">-소셜회원이 아닐 경우, 상세정보 수정은 비밀번호로 회원 검증</h6>
+	            	<h6 class="text-left font-weight-bold">* 마이페이지 개요화면</h6>
+	            	<h6 class="text-left">-자바 캘린더를 이용한 달력 화면 구현(1년치 주문내역을 한눈에 / 주문 후 바로 반영)</h6>
+	            	<h6 class="text-left">-Tooltip : 해당 칸에 대한 정확한 날짜를 보여줌</h6>
+	            	<h6 class="text-left">-색 : 주문 수에 따라 칸의 색이 진해짐</h6>
+	            	<h6 class="text-left">-녹색 박스 클릭 시, 간단한 주문정보와 상태가 slideDown으로 나타남</h6>
+	            	<h6 class="text-left font-weight-bold">* 주문내역 화면</h6>
+	            	<h6 class="text-left">-주문내역에 관한 상세 정보를 확인할 수 있음</h6>
+	            	<h6 class="text-left">-주문 상태와 조회기간에 따라 조회가능</h6>
 	            	<img src="ppt/mygarden-mypage.png" width="100%">
+	            	<h6 class="text-left font-weight-bold mt-3">* 배송추적 화면(스윗트래커 API)</h6>
+	            	<h6 class="text-left">-스윗트래커 API를 이용한 배송 추적 기능 구현</h6>
+	            	<img src="ppt/12.png" width="100%">
 			    </div>
 			  </div>
 			  <div class="tab-pane fade" id="nav-bag" role="tabpanel" aria-labelledby="nav-bag-tab">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
 	            	<h5 class="text-left mt-1"><li>상세페이지</li></h5>
+	            	<h6 class="text-left">-fixed된 주문서로 언제든 상품수량을 정하고 장바구니에 담을 수 있는 기능 구현</h6>
+	            	<h6 class="text-left">-상세페이지 하단에 질문과 후기, 댓글을 쓸 수 있는 기능 구현</h6>
+	            	<h6 class="text-left">-‘도움돼요’를 누르면 추천수가 올라가고, 추천수가 높은 후기는 메인화면에 노출</h6>
 	            	<img src="ppt/mygarden-detail.png" width="100%">
 	            	<h5 class="text-left mt-3"><li>장바구니</li></h5>
 	            	<img src="ppt/mygarden-bag.png" width="100%">
@@ -728,6 +764,8 @@
 			  <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
 	            	<h5 class="text-left mt-1"><li>구독하기</li></h5>
+	            	<h6 class="text-left">-정기구독 선택 화면(주문화면)</h6>
+	            	<h6 class="text-left">-아임포트 API를 이용한 카드결제, 무통장 입금 기능 구현</h6>
 	            	<img src="ppt/mygarden-buy.png" width="100%">
 			    </div>
 			  </div>
@@ -740,12 +778,18 @@
 			  <div class="tab-pane fade" id="nav-board" role="tabpanel" aria-labelledby="nav-board-tab">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
 	            	<h5 class="text-left mt-1"><li>자유게시판</li></h5>
+	            	<h6 class="text-left">-레시피나 질문 글을 쓸 수 있는 자유게시판 기능 구현</h6>
+	            	<h6 class="text-left">-각 글마다 댓글 쓰기, 수정 기능 구현</h6>
+	            	<h6 class="text-left">-페이징 기능으로 깔끔한 레이아웃 구현, 검색 기능으로 원하는 글 검색 가능</h6>
 	            	<img src="ppt/mygarden-board.png" width="100%">
 			    </div>
 			  </div>
 			  <div class="tab-pane fade" id="nav-admin" role="tabpanel" aria-labelledby="nav-admin-tab">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-4 my">
 	            	<h5 class="text-left mt-1"><li>관리자페이지</li></h5>
+	            	<h6 class="text-left">-회원관리, 상품관리 등 각종 관리가 가능한 페이지</h6>
+	            	<h6 class="text-left">-chart.js : 총 판매금액, 취소내역, 수익 등 사이트 운영에 필요한 통계 제공</h6>
+	            	<h6 class="text-left">-transaction, trigger : 트랜잭션과 트리거를 이용한 주문, 배송내역 관리</h6>
 	            	<img src="ppt/mygarden-admin.png" width="100%">
 			    </div>
 			  </div>
@@ -764,11 +808,22 @@
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-4 mg my">
 				 : 디지털 소외계층을 위한 무인주문기 체험 사이트
 			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 my">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 mb-2 my">
 				<h5>&ldquo;디지털 소외계층이 날로 늘어가는 지금,</h5>  
 				<h5>매장 곳곳에는 무인주문기가 보급되고 있다&rdquo;</h5>
 				<h5 class="mt-4">&ldquo;무인 주문기 사용을 어려워하는 사람들을 위해</h5>
 				<h5>기기 사용을 체험하고 학습할 공간을 마련해주면 어떨까?&rdquo;</h5>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-5 my">
+			  <button type="button" class="btn btn-outline-light btn-sm">#RegEX</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#Selenium</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#JSP</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#JSON</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#JDBC</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#Ajax</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#Javascript</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#JQuery</button>
+			  <button type="button" class="btn btn-outline-light btn-sm">#Google Developers</button>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-4 mygardenPPT2 my">
             	<script>
@@ -804,11 +859,27 @@
 			  </div>
 			  <div class="tab-pane fade" id="nav-game2" role="tabpanel" aria-labelledby="nav-game2-tab">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+	            	<h5 class="text-left mt-1"><li>무인주문기 체험을 하며 원리를 학습할 수 있는 페이지</li></h5>
+	            	<h6 class="text-left">-지시사항을 이행하게끔 도와주는 포인터를 자바 스크립트로 구현</h6>
+	            	<h6 class="text-left">-게임 시작 시, 난수로 이루어진 코드 부여</h6>
+	            	<h6 class="text-left">-게임 종료 후, 코드는 삭제되나 회원일 경우 마이페이지에 결과 저장</h6>
+	            	<h6 class="text-left">-TTS API를 사용해 텍스트를 음성으로 치환시켜주는 기능 구현</h6>
+	            	<h6 class="text-left">-무인주문기 체험을 위한 UI 구현</h6>
+	            	<h6 class="text-left">-중복을 제거한 로직으로 매 게임마다 메뉴 배치가 바뀜</h6>
+	            	<h6 class="text-left">-Selenium을 이용한 실시간 메뉴 업데이트 가능</h6>
+	            	<h6 class="text-left">-팝업으로 추가 정보 전달</h6>
+	            	<h6 class="text-left">-최종 결과를 확인할 수 있는 페이지 제공</h6>
+	            	<h6 class="text-left">-음성, 문자인식 검색기능 제공</h6>
+	            	<h6 class="text-left">-가까운 매장 찾기, 지도 찾기 기능 제공</h6>
 	            	<img src="ppt/wuyako-game1.png" width="100%">
 			    </div>
 			  </div>
 			  <div class="tab-pane fade" id="nav-search2" role="tabpanel" aria-labelledby="nav-search2-tab">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+	            	<h5 class="text-left mt-1"><li>유투브 검색을 하며 더 많은 정보를 접할 수 있는 페이지</li></h5>
+	            	<h6 class="text-left">-구글 디벨로퍼스 API</h6>
+	            	<h6 class="text-left">-키워드로 유튜브 영상 실시간검색 가능, 더 많은 정보에 접근 가능</h6>
+	            	<h6 class="text-left">-페이징 기능으로 편리한 탐색 기능</h6>
 	            	<img src="ppt/wuyako-youtube.png" width="100%">
 			    </div>
 			  </div>
@@ -819,11 +890,23 @@
 			  </div>
 			  <div class="tab-pane fade" id="nav-board2" role="tabpanel" aria-labelledby="nav-board2-tab">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+	            	<h5 class="text-left mt-1"><li>회원들이 자유롭게 글을 올릴 수 있는 자유게시판</li></h5>
+	            	<h6 class="text-left">-페이징 기법을 통한 게시판 글 목록 및 페이지 </h6>
+	            	<h6 class="text-left">-네비게이터와 검색기능 구현</h6>
+	            	<h6 class="text-left">-댓글 등록 기능 및 삭제, 수정 기능 구현</h6>
+	            	<h6 class="text-left">-관리자의 답변 작성 유/무 확인 기능</h6>
+	            	<h6 class="text-left">-썸머노트를 활용하여 이미지를 첨부한 게시글 등록이 가능</h6>
 	            	<img src="ppt/wuyako-freeboard.png" width="100%">
 			    </div>
 			  </div>
 			  <div class="tab-pane fade" id="nav-admin2" role="tabpanel" aria-labelledby="nav-admin2-tab">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-4 my">
+	            	<h5 class="text-left mt-1"><li>사이트 관리, 회원관리, 통계 확인을 할 수 있는 관리자 페이지</li></h5>
+	            	<h6 class="text-left">-스케줄러를 활용, 매일 자정에 방문자 수 업데이트</h6>
+	            	<h6 class="text-left">-유저관리를 통한 불량 유저차단 및 복원 가능</h6>
+	            	<h6 class="text-left">-차트 JS를 이용한 최근 한달 방문자 수 및 성별 누적 통계</h6>
+	            	<h6 class="text-left">-연령대별 회원 수 통계</h6>
+	            	<h6 class="text-left">-관리자가 게시판 관리 및 답변 작성 가능</h6>
 	            	<img src="ppt/wuyako-admin.png" width="100%">
 			    </div>
 			  </div>
