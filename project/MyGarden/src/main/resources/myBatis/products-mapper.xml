@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductsDAO">
+
+	<select id="selectBestProducts" resultType="my.garden.dto.ProductsDTO">
+		select * from (select row_number() over (order by p_sales desc) as rown, products.* from products) where rown between 1 and 8
+	</select>
+
+	<insert id="insertProducts">
+		insert into products values(p_seq.nextval, #{p_imagepath,jdbcType=VARCHAR}, #{p_title,jdbcType=VARCHAR}, #{p_subtitle,jdbcType=VARCHAR},
+		#{p_category,jdbcType=VARCHAR}, #{p_inventory}, #{p_unit,jdbcType=VARCHAR}, #{p_seller,jdbcType=VARCHAR}, #{p_origin,jdbcType=VARCHAR}, #{p_price},
+		#{p_content,jdbcType=VARCHAR}, default, default)
+	</insert>
+	
+	<insert id="insertImageFile">
+		insert into image_product values(#{array[0]}, #{array[1]})
+	</insert>
+	
+	<select id="selectProductsListByCategory" parameterType="Map" resultType="my.garden.dto.ProductsDTO">
+		select * from (select row_number() over (order by p_no desc) as rown, products.* from products where p_category=#{category,jdbcType=VARCHAR}) 
+		where rown between #{start} and #{end}
+	</select>
+	
+	<select id="selectProductsListByPage" resultType="my.garden.dto.ProductsDTO">
+		select * from (select row_number() over (order by p_no desc) as rown, products.* from products) 
+		where rown between #{array[0]} and #{array[1]}
+	</select>
+	
+	<select id="selectOneProduct" resultType="my.garden.dto.ProductsDTO">
+		select * from products where p_no=#{p_no}
+	</select>
+	
+	<delete id="deleteProduct">
+		delete from products where p_no=#{p_no}
+	</delete>
+	
+	<delete id="deleteImagePath">
+		delete from image_product where img_p_title=#{img_p_title,jdbcType=VARCHAR}
+	</delete>
+	
+	<update id="updateProduct" parameterType="my.garden.dto.ProductsDTO">
+		update products set p_imagepath=#{p_imagepath}, p_title=#{p_title}, p_subtitle=#{p_subtitle}, p_category=#{p_category}, 
+		p_inventory=#{p_inventory}, p_unit=#{p_unit}, p_seller=#{p_seller}, p_origin=#{p_origin}, p_price=#{p_price}, p_content=#{p_content} 
+		where p_no=#{p_no}
+	</update>
+	
+	<select id="selectProductsListByKeyword" parameterType="Map" resultType="my.garden.dto.ProductsDTO">
+		select * from (select row_number() over (order by p_no desc) as rown, products.* from products where p_title like '%'||#{keyword}||'%')
+		where rown between #{start} and #{end}
+	</select>
+	
+	<select id="selectTitlesByCategory" resultType="java.lang.String">
+		select p_title from products where p_category = #{p_category,jdbcType=VARCHAR}
+	</select>	
+	
+	<update id="updateSales" parameterType="Map">
+		update products set p_sales=p_sales+#{count} where p_no = #{p_no}
+	</update>
+	
+
+</mapper>
