@@ -16,51 +16,51 @@ import my.garden.daoImpl.ShoppingDAOImpl;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ScheduleTask {
 
-	private ThreadPoolTaskScheduler scheduler;
+  private ThreadPoolTaskScheduler scheduler;
 
-	@Autowired
-	ShoppingDAOImpl sdao;
+  @Autowired
+  ShoppingDAOImpl sdao;
 
-	private int count = 0;
-	
-	public int getCount() {
-		return count;
-	}
+  private int count = 0;
 
-	public void setCount(int count) {
-		this.count = count;
-	}
+  public int getCount() {
+    return count;
+  }
 
-	public void stopScheduler() {
-		scheduler.shutdown();
-	}
+  public void setCount(int count) {
+    this.count = count;
+  }
 
-	public void startScheduler(String orderNo) {
-		scheduler = new ThreadPoolTaskScheduler();
-		scheduler.initialize();
-		// �뒪耳�伊대윭媛� �떆�옉�릺�뒗 遺�遺� 
-		scheduler.schedule(getRunnable(orderNo), getTrigger());
-	}
+  public void stopScheduler() {
+    scheduler.shutdown();
+  }
 
-	private Runnable getRunnable(String orderNo){
-		return () -> {
-			try {
-				count++;
-				System.out.println("�뒪耳�以꾨윭 �솕�쓬 + : " + count);
-				if(count==2) {
-					sdao.completeShipping(Long.parseLong(orderNo));
-					count=0;
-					this.stopScheduler();
-				}
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		};
-	}
+  public void startScheduler(String orderNo) {
+    scheduler = new ThreadPoolTaskScheduler();
+    scheduler.initialize();
+    // �뒪耳�伊대윭媛� �떆�옉�릺�뒗 遺�遺�
+    scheduler.schedule(getRunnable(orderNo), getTrigger());
+  }
 
-	private Trigger getTrigger() {
-		// �옉�뾽 二쇨린 �꽕�젙 
-		return new PeriodicTrigger(10, TimeUnit.MINUTES);
-	}
+  private Runnable getRunnable(String orderNo) {
+    return () -> {
+      try {
+        count++;
+        System.out.println("�뒪耳�以꾨윭 �솕�쓬 + : " + count);
+        if (count == 2) {
+          sdao.completeShipping(Long.parseLong(orderNo));
+          count = 0;
+          this.stopScheduler();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    };
+  }
+
+  private Trigger getTrigger() {
+    // �옉�뾽 二쇨린 �꽕�젙
+    return new PeriodicTrigger(10, TimeUnit.MINUTES);
+  }
 
 }

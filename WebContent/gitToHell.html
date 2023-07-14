@@ -1,1046 +1,1213 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>git to Hell</title>
-    <link rel="shortcut icon" href="img/logo2.png">
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<!--     scroll -->
-		<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css"/>
-		<script src="js/jquery.mCustomScrollbar.js"></script>
+  <meta charset="UTF-8">
+  <title>git to Hell</title>
+  <link rel="shortcut icon" href="img/logo2.png">
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
+  <!--     scroll -->
+  <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css"/>
+  <script src="js/jquery.mCustomScrollbar.js"></script>
 </head>
-	<style>
-		@import url('https://fonts.googleapis.com/css?family=Audiowide|Nanum+Myeongjo|Orbitron:700|Orbitron|Song+Myung|Syncopate|Nanum+Gothic|Lobster|Noticia+Text:700|Nanum+Gothic|Nanum+Myeongjo|Noto+Serif+KR|Oleo+Script&display=swap');
-        *{text-decoration:none;}
-		body{background:url(img/space.jpg) repeat; background-size:20%;}
-        .upBtn{position:fixed; bottom:20px; left:12px; border-radius:50%; opacity:0.7; z-index:999; box-shadow: 1px 2px 5px #000; cursor:pointer;}
-        .upBtn2{position:fixed; bottom:120px; left:12px; border-radius:50%; opacity:0.7; z-index:999; box-shadow: 1px 2px 5px #000; cursor:pointer;}
-        .upBtn2 a{color:#f5f5f5; margin:-3px 0 0 -1px;}
-        .upBtn2 a:hover{text-decoration:none;}
-        .leftMenu{position:fixed; bottom:70px; left:12px; border-radius:50%; opacity:0.7; z-index:999; box-shadow: 1px 2px 5px #000; cursor:pointer;}
-        .topmenu{margin:0 auto; background:url(img/space.jpg) repeat; background-size:25%; box-shadow: 1px 1px 5px #222;}
-		hr{width:70%; box-shadow: 0px 0px 1px #fff;}
-		.scrl{padding:20px; overflow: auto; border-radius:5px; box-shadow: 0px 0px 15px #222;}
-		.modal-scroll{overflow: auto;}
-		.scrollBar{padding:20px; overflow: auto; border-radius:5px; box-shadow: 0px 0px 15px #222;}
-		.scrollBar-lg{padding:20px; overflow: auto; border-radius:5px; box-shadow: 0px 0px 15px #222;}
-		h1{font-family:Lobster, serif; text-shadow:0px 0px 6px #eee;}
-		h2, h3, h4, h5{font-family:Nanum Myeongjo, serif;}
-        .endc{cursor:pointer;}
-        .endc:hover{text-decoration:none; color:white; opacity:0.7;}
-		.contents{background:#000; color:#fff;}
-		button, .modal-title, .modal-body a{font-family:Nanum Gothic, serif;}
-        .modal-body a{color:#000; font-size:18px; line-height: 190%;}
-        .modal-body a:hover{text-decoration:none; opacity:0.7;}
-		p, li{font-family:Nanum Gothic, serif; font-size:15px; line-height:200%;}
-        .endCard{display:none; border-radius:5px; box-shadow: 0px 0px 15px #222;}
-	</style>
-<body>	
-	<script>
-		$(function(){
-			//scroll
-			$(".scrl").mCustomScrollbar({
-				axis:"x",
-				theme:"light",
-				autoExpandScrollbar:true,
-				advanced:{autoExpandHorizontalScroll:true},
-				setWidth: "100%",
-				scrollButtons:{ enable: true }
-			});
-			$(".modal-scroll").mCustomScrollbar({
-				axis:"y",
-				theme:"light",
-				autoExpandScrollbar:true,
-				advanced:{autoExpandHorizontalScroll:true},
-				setHeight: "400",
-				scrollButtons:{ enable: true }
-			});
-			$(".scrollBar").mCustomScrollbar({
-				axis:"y",
-				theme:"3d-thick",
-				autoExpandScrollbar:true,
-				advanced:{autoExpandHorizontalScroll:true},
-				setWidth: "100%",
-				setHeight: 500,
-				scrollButtons:{ enable: true }
-			});
-			$(".scrollBar-lg").mCustomScrollbar({
-				axis:"xy",
-				theme:"light",
-				autoExpandScrollbar:true,
-				advanced:{autoExpandHorizontalScroll:true},
-				setWidth: "100%",
-				setHeight: 500,
-				scrollButtons:{ enable: true }
-			});
-            $('.upBtn').on("click", function(){
-                $('html, body').stop().animate({scrollTop:'0'}); 
-            });
-            $('.modal-body a').on('click', function(){
-               $('html, body').stop().animate({scrollTop:$($(this).attr('href')).offset().top-30}); 
-               $(this).attr('data-dismiss', 'modal'); 
-            });
-        });
-	</script>	
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Audiowide|Nanum+Myeongjo|Orbitron:700|Orbitron|Song+Myung|Syncopate|Nanum+Gothic|Lobster|Noticia+Text:700|Nanum+Gothic|Nanum+Myeongjo|Noto+Serif+KR|Oleo+Script&display=swap');
+
+  * {
+    text-decoration: none;
+  }
+
+  body {
+    background: url(img/space.jpg) repeat;
+    background-size: 20%;
+  }
+
+  .upBtn {
+    position: fixed;
+    bottom: 20px;
+    left: 12px;
+    border-radius: 50%;
+    opacity: 0.7;
+    z-index: 999;
+    box-shadow: 1px 2px 5px #000;
+    cursor: pointer;
+  }
+
+  .upBtn2 {
+    position: fixed;
+    bottom: 120px;
+    left: 12px;
+    border-radius: 50%;
+    opacity: 0.7;
+    z-index: 999;
+    box-shadow: 1px 2px 5px #000;
+    cursor: pointer;
+  }
+
+  .upBtn2 a {
+    color: #f5f5f5;
+    margin: -3px 0 0 -1px;
+  }
+
+  .upBtn2 a:hover {
+    text-decoration: none;
+  }
+
+  .leftMenu {
+    position: fixed;
+    bottom: 70px;
+    left: 12px;
+    border-radius: 50%;
+    opacity: 0.7;
+    z-index: 999;
+    box-shadow: 1px 2px 5px #000;
+    cursor: pointer;
+  }
+
+  .topmenu {
+    margin: 0 auto;
+    background: url(img/space.jpg) repeat;
+    background-size: 25%;
+    box-shadow: 1px 1px 5px #222;
+  }
+
+  hr {
+    width: 70%;
+    box-shadow: 0px 0px 1px #fff;
+  }
+
+  .scrl {
+    padding: 20px;
+    overflow: auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px #222;
+  }
+
+  .modal-scroll {
+    overflow: auto;
+  }
+
+  .scrollBar {
+    padding: 20px;
+    overflow: auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px #222;
+  }
+
+  .scrollBar-lg {
+    padding: 20px;
+    overflow: auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px #222;
+  }
+
+  h1 {
+    font-family: Lobster, serif;
+    text-shadow: 0px 0px 6px #eee;
+  }
+
+  h2, h3, h4, h5 {
+    font-family: Nanum Myeongjo, serif;
+  }
+
+  .endc {
+    cursor: pointer;
+  }
+
+  .endc:hover {
+    text-decoration: none;
+    color: white;
+    opacity: 0.7;
+  }
+
+  .contents {
+    background: #000;
+    color: #fff;
+  }
+
+  button, .modal-title, .modal-body a {
+    font-family: Nanum Gothic, serif;
+  }
+
+  .modal-body a {
+    color: #000;
+    font-size: 18px;
+    line-height: 190%;
+  }
+
+  .modal-body a:hover {
+    text-decoration: none;
+    opacity: 0.7;
+  }
+
+  p, li {
+    font-family: Nanum Gothic, serif;
+    font-size: 15px;
+    line-height: 200%;
+  }
+
+  .endCard {
+    display: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px #222;
+  }
+</style>
+<body>
+<script>
+  $(function () {
+    //scroll
+    $(".scrl").mCustomScrollbar({
+      axis: "x",
+      theme: "light",
+      autoExpandScrollbar: true,
+      advanced: {autoExpandHorizontalScroll: true},
+      setWidth: "100%",
+      scrollButtons: {enable: true}
+    });
+    $(".modal-scroll").mCustomScrollbar({
+      axis: "y",
+      theme: "light",
+      autoExpandScrollbar: true,
+      advanced: {autoExpandHorizontalScroll: true},
+      setHeight: "400",
+      scrollButtons: {enable: true}
+    });
+    $(".scrollBar").mCustomScrollbar({
+      axis: "y",
+      theme: "3d-thick",
+      autoExpandScrollbar: true,
+      advanced: {autoExpandHorizontalScroll: true},
+      setWidth: "100%",
+      setHeight: 500,
+      scrollButtons: {enable: true}
+    });
+    $(".scrollBar-lg").mCustomScrollbar({
+      axis: "xy",
+      theme: "light",
+      autoExpandScrollbar: true,
+      advanced: {autoExpandHorizontalScroll: true},
+      setWidth: "100%",
+      setHeight: 500,
+      scrollButtons: {enable: true}
+    });
+    $('.upBtn').on("click", function () {
+      $('html, body').stop().animate({scrollTop: '0'});
+    });
+    $('.modal-body a').on('click', function () {
+      $('html, body').stop().animate({scrollTop: $($(this).attr('href')).offset().top - 30});
+      $(this).attr('data-dismiss', 'modal');
+    });
+  });
+</script>
 <!--    left menu-->
-    <span class="btn btn-dark leftMenu text-light" data-toggle="modal" data-target="#exampleModalCenter">
+<span class="btn btn-dark leftMenu text-light" data-toggle="modal" data-target="#exampleModalCenter">
       &telrec;
     </span>
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="<exampleModalCent></exampleModalCent>erTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title font-weight-bold" id="exampleModalCenterTitle">메뉴 이동</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body modal-scroll">
-            <ul>
-                <li><a href="#action1">1. git 설치하기</a></li>
-                <li><a href="#action2">2. path 설정하기</a></li>
-                <li><a href="#action3">3. git 실행하기</a></li>
-                <li><a href="#action4">4. 경로 이동 및 저장소 생성</a></li>
-                <li><a href="#action5">5. 저장소 설정 후 커밋하기</a></li>
-                <li><a href="#action6">6. 계정 설정하기</a></li>
-                <li><a href="#action7">7. gitHub에서 리파지트리 만들기 밎 삭제하기</a></li>
-                <li><a href="#action8">8. gitHub 리파지트리에서 파일 내려받기</a></li>
-                <li><a href="#action9">9. gitHub 리파지트리에 업데이트한 파일 올리기</a></li>
-                <li><a href="#action10">10. 협업방식</a></li>
-                    <li style="list-style: none; text-indent:20px;">- Collaborator</li>
-                    <li style="list-style: none; text-indent:20px;">- Pull Request</li>
-                <li><a href="#action11">11. Conflict 해결하기</a></li>
-                <li><a href="#action12">12. 계정 변경하기</a></li>
-                <li><a href="#action_last">《 단축기 및 기타 명령어 》</a></li>
-                <li><a href="#action_last2">《 재미로 하는 성향테스트 》</a></li>
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-          </div>
-        </div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="<exampleModalCent></exampleModalCent>erTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-bold" id="exampleModalCenterTitle">메뉴 이동</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-scroll">
+        <ul>
+          <li><a href="#action1">1. git 설치하기</a></li>
+          <li><a href="#action2">2. path 설정하기</a></li>
+          <li><a href="#action3">3. git 실행하기</a></li>
+          <li><a href="#action4">4. 경로 이동 및 저장소 생성</a></li>
+          <li><a href="#action5">5. 저장소 설정 후 커밋하기</a></li>
+          <li><a href="#action6">6. 계정 설정하기</a></li>
+          <li><a href="#action7">7. gitHub에서 리파지트리 만들기 밎 삭제하기</a></li>
+          <li><a href="#action8">8. gitHub 리파지트리에서 파일 내려받기</a></li>
+          <li><a href="#action9">9. gitHub 리파지트리에 업데이트한 파일 올리기</a></li>
+          <li><a href="#action10">10. 협업방식</a></li>
+          <li style="list-style: none; text-indent:20px;">- Collaborator</li>
+          <li style="list-style: none; text-indent:20px;">- Pull Request</li>
+          <li><a href="#action11">11. Conflict 해결하기</a></li>
+          <li><a href="#action12">12. 계정 변경하기</a></li>
+          <li><a href="#action_last">《 단축기 및 기타 명령어 》</a></li>
+          <li><a href="#action_last2">《 재미로 하는 성향테스트 》</a></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
+  </div>
+</div>
 <!--	button-->
-    <span class="btn btn-dark upBtn text-light">
+<span class="btn btn-dark upBtn text-light">
       &olarr; 
     </span>
-    <span class="btn btn-dark upBtn2">
+<span class="btn btn-dark upBtn2">
        	<a href="index.html">&LessLess;</a>
     </span>
 <!--   top menu-->
-    <div class="row topmenu text-center">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto p-4">
-            <a href="https://backlog.com/git-tutorial/kr/stepup/stepup1_1.html" class="btn btn-outline-light btn-lg mr-2 mb-2" target="_blank">Branch란?</a>
-            <a href="https://ideone.com/" class="btn btn-outline-light btn-lg mr-2 mb-2" target="_blank">JAVA in Web</a>
-            <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default" class="btn btn-outline-light btn-lg mr-2 mb-2" target="_blank">HTML in Web</a>
-            <a href="https://github.com/ABarthDew/Git-to-Hell" class="btn btn-outline-light btn-lg mr-2 mb-2" target="_blank">제작자의 git</a>
-        </div>
-    </div>
+<div class="row topmenu text-center">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto p-4">
+    <a href="https://backlog.com/git-tutorial/kr/stepup/stepup1_1.html" class="btn btn-outline-light btn-lg mr-2 mb-2"
+       target="_blank">Branch란?</a>
+    <a href="https://ideone.com/" class="btn btn-outline-light btn-lg mr-2 mb-2" target="_blank">JAVA in Web</a>
+    <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_default"
+       class="btn btn-outline-light btn-lg mr-2 mb-2" target="_blank">HTML in Web</a>
+    <a href="https://github.com/ABarthDew/Git-to-Hell" class="btn btn-outline-light btn-lg mr-2 mb-2" target="_blank">제작자의
+      git</a>
+  </div>
+</div>
 <!--    main-->
-	<div class="container-fluid text-center pl-3 pr-3">
-        <div class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5">
-                <h1 class="text-white titles display-1 p-3">Git to Hell</h1>
-                <hr>
-            </div>
+<div class="container-fluid text-center pl-3 pr-3">
+  <div class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5">
+      <h1 class="text-white titles display-1 p-3">Git to Hell</h1>
+      <hr>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action1" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-3 my">
+      <h2 class="text-white font-weight-bold">1. git 설치하기</h2>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5">
+      <a href="https://git-scm.com" target="_blank" class="btn btn-outline-light btn-lg mb-4">git 다운로드 go!</a>
+      <h3 class="text-white font-weight-bold">Download > Window > Downloading Git</h3>
+      <h4 class="text-white font-weight-bold mt-3">64-bit Git for Windows
+        <ins>Portable</ins>
+        다운로드
+      </h4>
+      <h5 class="text-white mt-3">: 경로 지정 후 설치를 완료하세요</h5>
+      <h5 class="text-white mt-3">:
+        <ins>PortableGit</ins>
+        이라는 폴더가 만들어집니다
+      </h5>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action2" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-3 my">
+      <h2 class="text-white font-weight-bold">2. path 설정하기</h2>
+    </div>
+  </div>
+  <div class="row mt-1 text-center pl-2 pr-2">
+    <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar-lg mb-5 my">
+      <div class="contents">
+        <img src="img/path.png">
+      </div>
+    </div>
+  </div>
+  <div class="row mt-1 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5">
+      <h3 class="text-white font-weight-bold">내pc 우클릭 > 속성 > 고급시스템 설정 > 환경변수 > path 편집</h3>
+      <h5 class="text-white mt-3">: path를 클릭하고 편집 버튼을 누르세요</h5>
+      <h5 class="text-white mt-3">: 빈칸에 Portable 내
+        <ins>bin</ins>
+        폴더의 경로를 채워넣고 적용을 누르세요
+      </h5>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action3" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-3 my">
+      <h2 class="text-white font-weight-bold">3. git 실행하기</h2>
+      <h5 class="text-white mt-3">윈도우 검색 > cmd를 실행 후, "git"을 입력하세요</h5>
+      <h5 class="text-white mt-3">*cmd 창에 명령어를 입력할 때는 띄어쓰기 등을 잘 지켜주셔야 합니다</h5>
+    </div>
+  </div>
+  <div class="row mt-1 text-center">
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mx-auto mb-3 my">
+      <div class="input-group mb-2">
+        <input type="text" class="form-control" value="git">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-    <!--  action-->
-        <div id="action1" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-3 my">
-                <h2 class="text-white font-weight-bold">1. git 설치하기</h2>
-            </div>
-        </div>
-        <div class="row text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5">
-                <a href="https://git-scm.com" target="_blank" class="btn btn-outline-light btn-lg mb-4">git 다운로드 go!</a>
-                <h3 class="text-white font-weight-bold">Download > Window > Downloading Git</h3>
-                <h4 class="text-white font-weight-bold mt-3">64-bit Git for Windows <ins>Portable</ins> 다운로드</h4>
-                <h5 class="text-white mt-3">: 경로 지정 후 설치를 완료하세요</h5>
-                <h5 class="text-white mt-3">: <ins>PortableGit</ins>이라는 폴더가 만들어집니다</h5>
-            </div>
-        </div>
-    <!--  action-->
-        <div id="action2" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-3 my">
-                <h2 class="text-white font-weight-bold">2. path 설정하기</h2>
-            </div>
-        </div>
-        <div class="row mt-1 text-center pl-2 pr-2">
-            <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar-lg mb-5 my">
-                <div class="contents">
-                    <img src="img/path.png">
-                </div>
-            </div>
-        </div>
-        <div class="row mt-1 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5">
-                <h3 class="text-white font-weight-bold">내pc 우클릭 > 속성 > 고급시스템 설정 > 환경변수 > path 편집</h3>
-                <h5 class="text-white mt-3">: path를 클릭하고 편집 버튼을 누르세요</h5>
-                <h5 class="text-white mt-3">: 빈칸에 Portable 내 <ins>bin</ins> 폴더의 경로를 채워넣고 적용을 누르세요</h5>
-            </div>
-        </div>
-    <!--  action-->
-        <div id="action3" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-3 my">
-                <h2 class="text-white font-weight-bold">3. git 실행하기</h2>
-                <h5 class="text-white mt-3">윈도우 검색 > cmd를 실행 후, "git"을 입력하세요</h5>
-                <h5 class="text-white mt-3">*cmd 창에 명령어를 입력할 때는 띄어쓰기 등을 잘 지켜주셔야 합니다</h5>
-            </div>
-        </div>
-        <div class="row mt-1 text-center">
-            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mx-auto mb-3 my">
-                <div class="input-group mb-2">
-                  <input type="text" class="form-control" value="git">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-1 text-center mb-5 pl-2 pr-2">
-            <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 mx-auto scrollBar mb-5 my">
-                <div class="contents" style="text-align:left;">
-                    <h6 class="text-secondary">C:\Users\user1>git</h6>
-                    These are common Git commands used in various situations:<br>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-1 text-center mb-5 pl-2 pr-2">
+    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12 mx-auto scrollBar mb-5 my">
+      <div class="contents" style="text-align:left;">
+        <h6 class="text-secondary">C:\Users\user1>git</h6>
+        These are common Git commands used in various situations:<br>
 
-                    start a working area (see also: git help tutorial)<br>
-                       clone      Clone a repository into a new directory<br>
-                       init       Create an empty Git repository or reinitialize an existing one<br>
+        start a working area (see also: git help tutorial)<br>
+        clone Clone a repository into a new directory<br>
+        init Create an empty Git repository or reinitialize an existing one<br>
 
-                    work on the current change (see also: git help everyday)<br>
-                       add        Add file contents to the index<br>
-                       mv         Move or rename a file, a directory, or a symlink<br>
-                       reset      Reset current HEAD to the specified state<br>
-                       rm         Remove files from the working tree and from the index<br>
+        work on the current change (see also: git help everyday)<br>
+        add Add file contents to the index<br>
+        mv Move or rename a file, a directory, or a symlink<br>
+        reset Reset current HEAD to the specified state<br>
+        rm Remove files from the working tree and from the index<br>
 
-                    examine the history and state (see also: git help revisions)<br>
-                       bisect     Use binary search to find the commit that introduced a bug<br>
-                       grep       Print lines matching a pattern<br>
-                       log        Show commit logs<br>
-                       show       Show various types of objects<br>
-                       status     Show the working tree status<br>
+        examine the history and state (see also: git help revisions)<br>
+        bisect Use binary search to find the commit that introduced a bug<br>
+        grep Print lines matching a pattern<br>
+        log Show commit logs<br>
+        show Show various types of objects<br>
+        status Show the working tree status<br>
 
-                    grow, mark and tweak your common history<br>
-                       branch     List, create, or delete branches<br>
-                       checkout   Switch branches or restore working tree files<br>
-                       commit     Record changes to the repository<br>
-                       diff       Show changes between commits, commit and working tree, etc<br>
-                       merge      Join two or more development histories together<br>
-                       rebase     Reapply commits on top of another base tip<br>
-                       tag        Create, list, delete or verify a tag object signed with GPG<br>
+        grow, mark and tweak your common history<br>
+        branch List, create, or delete branches<br>
+        checkout Switch branches or restore working tree files<br>
+        commit Record changes to the repository<br>
+        diff Show changes between commits, commit and working tree, etc<br>
+        merge Join two or more development histories together<br>
+        rebase Reapply commits on top of another base tip<br>
+        tag Create, list, delete or verify a tag object signed with GPG<br>
 
-                    collaborate (see also: git help workflows)<br>
-                       fetch      Download objects and refs from another repository<br>
-                       pull       Fetch from and integrate with another repository or a local branch<br>
-                       push       Update remote refs along with associated objects<br>
+        collaborate (see also: git help workflows)<br>
+        fetch Download objects and refs from another repository<br>
+        pull Fetch from and integrate with another repository or a local branch<br>
+        push Update remote refs along with associated objects<br>
 
-                    'git help -a' and 'git help -g' list available subcommands and some<br>
-                    to read about a specific subcommand or concept.<br>
-                    ....brah brah brah...<br>
-                    <h6 class="text-secondary">C:\Users\user1></h6>
-                </div>
-            </div>
+        'git help -a' and 'git help -g' list available subcommands and some<br>
+        to read about a specific subcommand or concept.<br>
+        ....brah brah brah...<br>
+        <h6 class="text-secondary">C:\Users\user1></h6>
+      </div>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action4" class="row my text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-2 my">
+      <h2 class="text-white font-weight-bold">4. 경로 이동 및 저장소 생성</h2>
+    </div>
+  </div>
+  <div class="row my text-center p-5">
+    <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 mx-auto pl-4 pr-4 mb-3 my">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="d:">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-    <!--  action-->
-        <div id="action4" class="row my text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-2 my">
-                <h2 class="text-white font-weight-bold">4. 경로 이동 및 저장소 생성</h2>
-            </div>
+      </div>
+      <p class="text-white">d드라이브로 경로를 이동합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="cd HelloGit">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row my text-center p-5">
-            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 mx-auto pl-4 pr-4 mb-3 my">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="d:">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">d드라이브로 경로를 이동합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="cd HelloGit">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">d드라이브 내 폴더로 이동하려면 폴더 이름 앞에 cd 를 씁니다</p>
-                <p class="text-white">(드라이브와 폴더 이동 방법이 각각 다름을 인지하세요)</p>
-                <p class="text-white">상위 폴더로 가려면 "cd .."라고 입력합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="mkdir HelloGit">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">d 드라이브 내 HelloGit이라는 이름의 폴더를 새로 만듭니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="dir">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">HelloGit 폴더의 정보를 출력합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="cd HelloGit">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">HelloGit 폴더로 진입합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="copy nul exam01.txt">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">exam01이라는 txt 파일을 생성합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="exam01.txt">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">exam01.txt를 실행합니다</p>
-                <p class="text-white">실행한 파일에 "test1" 이라고 입력한 후, txt파일을 종료합니다</p>
-                <p class="text-white">다시 dir을 입력하면 0이던 파일 용량이 달라진 것을 확인할 수 있습니다</p>
-            </div>
-            <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 mx-auto scrollBar mr-4 mb-3 my">
-                <div class="contents" style="text-align:left;">
-                    <h6 class="text-secondary">C:\Users\user1>d:</h6>
-                    <br>
-                    <h6 class="text-secondary">D:\>mkdir HelloGit</h6>
-                    <br>
-                    <h6 class="text-secondary">D:\>dir</h6>
-                     D 드라이브의 볼륨: BACKUP<br>
-                     볼륨 일련 번호: 805E-6908<br>
-                    <br>
-                    <h6 class="text-secondary">D:\>cd HelloGit</h6>>
-                    <br>
-                    <h6 class="text-secondary">D:\HelloGit>dir</h6>
-                     D 드라이브의 볼륨: BACKUP<br>
-                     볼륨 일련 번호: 805E-6908<br>
-                    <br>
-                     D:\HelloGit 디렉터리<br>
-                    <br>
-                    2019-06-12  오후 04:06    DIR          .<br>
-                    2019-06-12  오후 04:06    DIR          ..<br>
-                                   0개 파일                   0 바이트<br>
-                                   2개 디렉터리  348,361,797,632 바이트 남음<br>
-                    <br>
-                    <h6 class="text-secondary">D:\HelloGit>copy nul exam01.txt</h6>
-                            1개 파일이 복사되었습니다.<br>
-                    <br>
-                    <h6 class="text-secondary">D:\HelloGit>exam01.txt</h6>
-                    <br>
-                    <h6 class="text-secondary">D:\HelloGit>dir</h6>
-                     D 드라이브의 볼륨: BACKUP<br>
-                    <br>
-                     D:\HelloGit 디렉터리<br>
-                    <br>
-                    2019-06-12  오후 04:07    DIR          .<br>
-                    2019-06-12  오후 04:07    DIR          ..<br>
-                    2019-06-12  오후 04:07                 5 exam01.txt<br>
-                                   1개 파일                   5 바이트<br>
-                                   2개 디렉터리  348,361,797,632 바이트 남음<br>
-                </div>
-            </div>
+      </div>
+      <p class="text-white">d드라이브 내 폴더로 이동하려면 폴더 이름 앞에 cd 를 씁니다</p>
+      <p class="text-white">(드라이브와 폴더 이동 방법이 각각 다름을 인지하세요)</p>
+      <p class="text-white">상위 폴더로 가려면 "cd .."라고 입력합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="mkdir HelloGit">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-    <!--  action-->
-        <div id="action5" class="row my text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto my">
-                <h2 class="text-white font-weight-bold mb-4">5. 저장소 설정 후 커밋하기</h2>
-                <h5 class="text-white mt-3">git은 수정한 파일을 Repository에 올리기 전에 중간 저장소에 올리는데, 이 과정을 staging이라고 합니다</h5>
-                <h5 class="text-white mt-3">즉, 커밋을 하기 전에 stage라는 공간에 커밋할 대상들을 임시저장하는 겁니다</h5>
-                <h5 class="text-white mt-3">아래 cmd 창에 git status를 하면 나타나는 <ins>붉은 글씨로 출력된 파일</ins>들을 말합니다</h5>
-                <h5 class="text-white mt-3">'이 파일들을 커밋해야 합니다'라고 알려주는 것과 같습니다</h5>
-            </div>
+      </div>
+      <p class="text-white">d 드라이브 내 HelloGit이라는 이름의 폴더를 새로 만듭니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="dir">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row my text-center pt-5 pr-5 pl-5 pb-2">
-            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 mx-auto pl-4 pr-4 mb-3 my">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git init">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">현재 위치(HelloGit)를 git 저장소로 설정합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git status">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">git 저장소로 설정된 HelloGit 폴더의 현재 상태를 출력합니다</p>
-                <p class="text-white">최근 수정한 exam01.txt가 붉은색으로 표시되는 것을 확인할 수 있습니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git add exam01.txt">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">수정한 파일인 exam01.txt를 에 저장시킵니다</p>
-                <p class="text-white">수량이 많은 경우 git add * 라는 명령어로 한꺼번에 저장시킬 수 있습니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git commit -m 'file added 19.6.13'">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">커밋을 진행합니다</p>
-                <p class="text-white">'file added 19.6.13'은 기록용이므로 마음대로 기재해도 됩니다</p>
-                <p class="text-white">이 과정을 끝낸 후 다시 git status를 입력하면 'nothing to commit, working tree clean'라고 출력되는 것을 확인할 수 있습니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git log">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">로그를 확인하면, 숫자와 알파벳으로 이루어진 코드를 가진 로그가 생성된 것을 확인할 수 있습니다</p>
-            </div>
-            <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 mx-auto scrollBar mr-4 my">
-                <div class="contents" style="text-align:left;">
-                     <p class="text-secondary">D:\HelloGit>git init</p>
-                    Initialized empty Git repository in D:/HelloGit/.git/<br>
-                    <br>
-                     <p class="text-secondary">D:\HelloGit>git status</p>
-                    On branch master<br>
-                    <br>
-                    No commits yet<br>
-                    <br>
-                    Untracked files:<br>
-                      (use "git add file..." to include in what will be committed)<br>
-                    <br>
-                     <p class="text-danger">exam01.txt</p>
-                    <br>
-                    nothing added to commit but untracked files present (use "git add" to track)<br>
-                    <br>
-                     <p class="text-secondary">D:\HelloGit>git add exam01.txt</p>
-                    <br>
-                     <p class="text-secondary">D:\HelloGit>git commit -m "file added 19.6.13"</p>
-                    [master (root-commit) 4d6ebc3] file added 19.6.13<br>
-                     1 file changed, 1 insertion(+)<br>
-                     create mode 100644 exam01.txt<br>
-                    <br>
-                     <p class="text-secondary">D:\HelloGit>git status</p>
-                    On branch master<br>
-                    nothing to commit, working tree clean<br>
-                    <br>
-                     <p class="text-secondary">D:\HelloGit>git log</p>
-                    <span style="color:#bfff00;">commit 4debc3220267bcd1296adf4544b</span> <span style="color:#dc143c;">(HEAD -> master)</span><br>
-                     <p class="text-secondary">"4debc3220267bcd1296adf4544b"는 log의 키값입니다</p>
-                     <p class="text-secondary">식별을 할 때는 "4debc3"와 같이 앞 6글자만 추려도 가능합니다</p>
-                    Author: 000 000@gmail.com<br>
-                    Date:   Thu Jun 13 00:07:48 2019 +0900<br>
-                    <br>
-                    file added 19.6.13
-                </div>
-            </div>
+      </div>
+      <p class="text-white">HelloGit 폴더의 정보를 출력합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="cd HelloGit">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-    <!--  action-->
-        <div id="action6" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5 my">
-                <h2 class="text-white font-weight-bold">6. 계정 설정하기</h2>
-            </div>
+      </div>
+      <p class="text-white">HelloGit 폴더로 진입합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="copy nul exam01.txt">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row text-center pl-2 pr-2">
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto scrollBar mb-5 my">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git config --global user.email '내 이메일'">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">아이디를 입력합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git config --global user.name '이름'">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">유저 네임을 입력합니다(아무거나 입력해도 됩니다)</p>
-                <div class="contents" style="text-align:center;"><br>
-                    <p class="text-white">그리고 아래 화면이 뜨면 로그인 합니다</p>
-                        <img src="img/gitLogin.png"><br><br>
-                    <div class="contents" style="text-align:left;">
-                        <p class="text-secondary">D:\HelloGit>git config --global user.email "00@gmail.com"</p>
-                        <p class="text-secondary">D:\HelloGit>git config --global user.name "000"</p><br>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <p class="text-white">exam01이라는 txt 파일을 생성합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="exam01.txt">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-    <!--  action-->
-        <div id="action7" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5 my">
-                <h2 class="text-white font-weight-bold">7. gitHub에서 리파지트리 만들기 밎 삭제하기</h2>
-                <a href="https://github.com" target="_blank" class="btn btn-outline-light btn-lg mt-4">gitHub go!</a>
-            </div>
+      </div>
+      <p class="text-white">exam01.txt를 실행합니다</p>
+      <p class="text-white">실행한 파일에 "test1" 이라고 입력한 후, txt파일을 종료합니다</p>
+      <p class="text-white">다시 dir을 입력하면 0이던 파일 용량이 달라진 것을 확인할 수 있습니다</p>
+    </div>
+    <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 mx-auto scrollBar mr-4 mb-3 my">
+      <div class="contents" style="text-align:left;">
+        <h6 class="text-secondary">C:\Users\user1>d:</h6>
+        <br>
+        <h6 class="text-secondary">D:\>mkdir HelloGit</h6>
+        <br>
+        <h6 class="text-secondary">D:\>dir</h6>
+        D 드라이브의 볼륨: BACKUP<br>
+        볼륨 일련 번호: 805E-6908<br>
+        <br>
+        <h6 class="text-secondary">D:\>cd HelloGit</h6>>
+        <br>
+        <h6 class="text-secondary">D:\HelloGit>dir</h6>
+        D 드라이브의 볼륨: BACKUP<br>
+        볼륨 일련 번호: 805E-6908<br>
+        <br>
+        D:\HelloGit 디렉터리<br>
+        <br>
+        2019-06-12 오후 04:06 DIR .<br>
+        2019-06-12 오후 04:06 DIR ..<br>
+        0개 파일 0 바이트<br>
+        2개 디렉터리 348,361,797,632 바이트 남음<br>
+        <br>
+        <h6 class="text-secondary">D:\HelloGit>copy nul exam01.txt</h6>
+        1개 파일이 복사되었습니다.<br>
+        <br>
+        <h6 class="text-secondary">D:\HelloGit>exam01.txt</h6>
+        <br>
+        <h6 class="text-secondary">D:\HelloGit>dir</h6>
+        D 드라이브의 볼륨: BACKUP<br>
+        <br>
+        D:\HelloGit 디렉터리<br>
+        <br>
+        2019-06-12 오후 04:07 DIR .<br>
+        2019-06-12 오후 04:07 DIR ..<br>
+        2019-06-12 오후 04:07 5 exam01.txt<br>
+        1개 파일 5 바이트<br>
+        2개 디렉터리 348,361,797,632 바이트 남음<br>
+      </div>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action5" class="row my text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto my">
+      <h2 class="text-white font-weight-bold mb-4">5. 저장소 설정 후 커밋하기</h2>
+      <h5 class="text-white mt-3">git은 수정한 파일을 Repository에 올리기 전에 중간 저장소에 올리는데, 이 과정을 staging이라고 합니다</h5>
+      <h5 class="text-white mt-3">즉, 커밋을 하기 전에 stage라는 공간에 커밋할 대상들을 임시저장하는 겁니다</h5>
+      <h5 class="text-white mt-3">아래 cmd 창에 git status를 하면 나타나는
+        <ins>붉은 글씨로 출력된 파일</ins>
+        들을 말합니다
+      </h5>
+      <h5 class="text-white mt-3">'이 파일들을 커밋해야 합니다'라고 알려주는 것과 같습니다</h5>
+    </div>
+  </div>
+  <div class="row my text-center pt-5 pr-5 pl-5 pb-2">
+    <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 mx-auto pl-4 pr-4 mb-3 my">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git init">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row mt-1 text-center pl-2 pr-2">
-            <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar-lg mb-5 my">
-                <div class="contents" style="text-align:left;">
-                    <img src="img/r1.png"><br>
-                        <p class="text-white">리파지트리 메뉴를 클릭합니다</p><br>
-                    <img src="img/r2.png"><br>
-                        <p class="text-white">new를 눌러 새 리파지트리를 만듭니다</p><br>
-                    <img src="img/r3.png"><br>
-                        <p class="text-white">리파지트리 이름을 쓰고, README란을 체크하고, 생성 버튼을 누릅니다</p><br>
-                    <img src="img/r4.png"><br>
-                        <p class="text-white">아래처럼 만들어진 리파지트리를 확인할 수 있습니다</p><br>
-                    <img src="img/r5.png"><br>
-                        <p class="text-white">이 리파지트리를 삭제하려면 setting 메뉴를 누릅니다</p><br>
-                    <img src="img/r6.png"><br>
-                        <p class="text-white">맨 아래로 내려서 Delete버튼을 클릭합니다</p><br>
-                    <img src="img/r7.png"><br>
-                        <p class="text-white">리파지트리 이름을 정확히 기재한 후 삭제버튼을 누릅니다</p><br>
-                </div>
-            </div>
+      </div>
+      <p class="text-white">현재 위치(HelloGit)를 git 저장소로 설정합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git status">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-    <!--  action-->
-        <div id="action8" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-4 my">
-                <h2 class="text-white font-weight-bold mb-4">8. gitHub 리파지트리에서 파일 내려받기</h2>
-                <h5 class="text-white mt-3">※보통 리파지트리를 만들고 내 pc에 저장하는 순서는 이렇게 흘러갑니다</h5>
-                <h5 class="text-white mt-3">①gitHub.com에서 리파지트리를 만든다</h5>
-                <h5 class="text-white mt-3">②cmd 창을 켜서 clone 또는 pull을 사용해서 리파지트리를 내려받는다</h5>
-                <h5 class="text-white mt-3">③내려받은 파일을 수정한다</h5>
-                <h5 class="text-white mt-3">④cmd를 켜서 git add, git commit 등을 수행한다</h5>
-                <h5 class="text-white mt-3">⑤push를 사용해 리파지트리를 업데이트한다</h5>
-                <h5 class="text-white mt-5 font-weight-bold">먼저 리파지트리를 내려받아 내 pc에 저장하는 방법 부터 알아보겠습니다</h5>
-                <h5 class="text-white mt-3">1. 파일 복제하기(최초 1회만) : clone</h5>
-                <h5 class="text-white mt-3">2. 파일 내려받기(최초 1회 이후 보통 방식) : pull</h5>
-            </div>
+      </div>
+      <p class="text-white">git 저장소로 설정된 HelloGit 폴더의 현재 상태를 출력합니다</p>
+      <p class="text-white">최근 수정한 exam01.txt가 붉은색으로 표시되는 것을 확인할 수 있습니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git add exam01.txt">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-3 my">
-                <h5 class="text-white mt-1 font-weight-bold">※용어 정리 </h5>
-                <h5 class="text-white mt-2">clone : 통째로 받아서 초기화시키는 행위(초기 1회만 실행)</h5>
-                <h5 class="text-white mt-2">pull : 다운로드 명령(최신 갱신된 내용을 가져오는 것)</h5>
-                <h5 class="text-white mt-2">fetch : 서버에서 데이터를 다운받는 행위(임시브랜치에 가져오는 것)</h5>
-                <h5 class="text-white mt-2">merge : 가져온 다음 현재 브랜치에 병합하는 것</h5>
-                <h5 class="text-white mt-2">(fetch + merge = pull)</h5>
-            </div>
+      </div>
+      <p class="text-white">수정한 파일인 exam01.txt를 에 저장시킵니다</p>
+      <p class="text-white">수량이 많은 경우 git add * 라는 명령어로 한꺼번에 저장시킬 수 있습니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git commit -m 'file added 19.6.13'">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row text-center p-2">
-            <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12 mx-auto scrl my"><br>
-                <img src="img/rp1.png">
-                <p class="text-white">리파지트리의 주소를 복사합니다</p>
-            </div>
+      </div>
+      <p class="text-white">커밋을 진행합니다</p>
+      <p class="text-white">'file added 19.6.13'은 기록용이므로 마음대로 기재해도 됩니다</p>
+      <p class="text-white">이 과정을 끝낸 후 다시 git status를 입력하면 'nothing to commit, working tree clean'라고 출력되는 것을 확인할 수
+        있습니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git log">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row my text-center pt-5 pr-5 pl-5 pb-2">
-            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 mx-auto pl-4 pr-4 mb-3 my">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git clone 리파지트리주소.git">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">cmd창에서 파일을 받을 경로로 이동한 후, 해당 명령어를 입력합니다</p>
-                <p class="text-white">clone 자리에 pull이 들어가도 무방하나, 최초 다운로드를 할 때는 clone이 더 편리합니다</p>
-                <p class="text-white">pull은 따로 폴더를 만들어 놓고 다운로드 해야 하지만, clone은 폴더 째로 복제되기 때문입니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git init">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">내려받은 리파지트리(폴더)의 경로로 이동해, 해당 폴더를 저장소로 선언합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="copy nul exam02.txt">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">exam02.txt라는 임의 폴더를 만들어 수정 작업을 해 봅니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git status">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">상태를 확인하면, 커밋해야 할 목록이 뜹니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git add *">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">스테이징 합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git commit -m '19.6.13'">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">커밋합니다</p>
-            </div>
-            <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 mx-auto scrollBar mr-4 my">
-                <div class="contents" style="text-align:left;">
-                    <p class="text-secondary">C:\Users\auswo>cd C:\Test</p>
-                    <br>
-                    <p class="text-secondary">C:\Test>git clone https://github.com/zzz/Git-to-Hell.git</p>
-                    Cloning into 'Git-to-Hell'...<br>
-                    remote: Enumerating objects: 15, done.<br>
-                    remote: Counting objects: 100% (15/15), done.<br>
-                    remote: Compressing objects: 100% (10/10), done.<br>
-                    remote: Total 15 (delta 0), reused 12 (delta 0), pack-reused 0<br>
-                    Unpacking objects: 100% (15/15), done.<br>
-                    <br>
-                   <p class="text-secondary"> C:\Test\Git-to-Hell>git init</p>
-                    Initialized empty Git repository in C:Test\Git-to-Hell.git/<br>
-                    <br>
-                    <p class="text-secondary">C:\Test\Git-to-Hell>copy nul exam02.txt</p>
-                        1개 파일이 복사되었습니다.<br>
-                    <br>
-                   <p class="text-secondary"> C:\Test\Git-to-Hell>exam02.txt</p>
-                    <br>
-                  <p class="text-secondary">  C:Test\Git-to-Hell>git status</p>
-                    On branch master<br>
-                    <br>
-                    No commits yet<br>
-                    <br>
-                    Untracked files:<br>
-                      (use "git add file..." to include in what will be committed)<br>
-                    <br>
-                            <p class="text-danger">exam02.txt</p>
-                    <br>
-                    nothing added to commit but untracked files present (use "git add" to track)<br>
-                    <br>
-                    <p class="text-secondary">C:Test\Git-to-Hell>git add *</p>
-                    <br>
-                    <p class="text-secondary">C:Test\Git-to-Hell>git commit -m "19.6.13"</p>
-                    [master (root-commit) 3f6f60d] 19.6.13<br>
-                     1 file changed, 1 insertion(+)<br>
-                     create mode 100644 exam02.txt<br>
-                </div>
-            </div>
+      </div>
+      <p class="text-white">로그를 확인하면, 숫자와 알파벳으로 이루어진 코드를 가진 로그가 생성된 것을 확인할 수 있습니다</p>
+    </div>
+    <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 mx-auto scrollBar mr-4 my">
+      <div class="contents" style="text-align:left;">
+        <p class="text-secondary">D:\HelloGit>git init</p>
+        Initialized empty Git repository in D:/HelloGit/.git/<br>
+        <br>
+        <p class="text-secondary">D:\HelloGit>git status</p>
+        On branch master<br>
+        <br>
+        No commits yet<br>
+        <br>
+        Untracked files:<br>
+        (use "git add file..." to include in what will be committed)<br>
+        <br>
+        <p class="text-danger">exam01.txt</p>
+        <br>
+        nothing added to commit but untracked files present (use "git add" to track)<br>
+        <br>
+        <p class="text-secondary">D:\HelloGit>git add exam01.txt</p>
+        <br>
+        <p class="text-secondary">D:\HelloGit>git commit -m "file added 19.6.13"</p>
+        [master (root-commit) 4d6ebc3] file added 19.6.13<br>
+        1 file changed, 1 insertion(+)<br>
+        create mode 100644 exam01.txt<br>
+        <br>
+        <p class="text-secondary">D:\HelloGit>git status</p>
+        On branch master<br>
+        nothing to commit, working tree clean<br>
+        <br>
+        <p class="text-secondary">D:\HelloGit>git log</p>
+        <span style="color:#bfff00;">commit 4debc3220267bcd1296adf4544b</span> <span style="color:#dc143c;">(HEAD -> master)</span><br>
+        <p class="text-secondary">"4debc3220267bcd1296adf4544b"는 log의 키값입니다</p>
+        <p class="text-secondary">식별을 할 때는 "4debc3"와 같이 앞 6글자만 추려도 가능합니다</p>
+        Author: 000 000@gmail.com<br>
+        Date: Thu Jun 13 00:07:48 2019 +0900<br>
+        <br>
+        file added 19.6.13
+      </div>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action6" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5 my">
+      <h2 class="text-white font-weight-bold">6. 계정 설정하기</h2>
+    </div>
+  </div>
+  <div class="row text-center pl-2 pr-2">
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mx-auto scrollBar mb-5 my">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git config --global user.email '내 이메일'">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-    <!--  action-->
-        <div id="action9" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto my">
-                <h2 class="text-white font-weight-bold mb-4">9. gitHub 리파지트리에 업데이트한 파일 올리기</h2>
-                <h5 class="text-white mt-3">수정사항을 커밋한 후 리파지트리에 올리려면 pull을 먼저 수행해야 합니다</h5>
-                <h5 class="text-white mt-3">그 전에, remote를 생성합니다</h5>
-                <h5 class="text-white mt-3">clone을 하면 보통 origin이라는 이름으로 자동생성되지만, 확인 명령어로 리모트 확인 후 단계를 진행해 나가는 습관을 들이시기 바랍니다</h5>
-            </div>
+      </div>
+      <p class="text-white">아이디를 입력합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git config --global user.name '이름'">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row mt-4 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-3 my">
-                <h5 class="text-white mt-1 font-weight-bold">※파일을 push하기 전에 .gitignore 확장자를 가지는 파일을 생성, </h5>
-                <h5 class="text-white mt-3 font-weight-bold">아래 목록을 그대로 복사해 넣은 후 해당 폴더에 배치시킵니다</h5>
-                <h5 class="text-white mt-2">.classpath</h5>
-                <h5 class="text-white mt-2">.project</h5>
-                <h5 class="text-white mt-2">.settings</h5>
-                <h5 class="text-white mt-2">.class</h5>
-                <h5 class="text-white mt-2">build</h5>
-                <h5 class="text-white mt-3">해당 작업은 이클립스 등 자체 path를 가지는 IDE 사용자에 한해서 이뤄져야 합니다</h5>
-            </div>
+      </div>
+      <p class="text-white">유저 네임을 입력합니다(아무거나 입력해도 됩니다)</p>
+      <div class="contents" style="text-align:center;"><br>
+        <p class="text-white">그리고 아래 화면이 뜨면 로그인 합니다</p>
+        <img src="img/gitLogin.png"><br><br>
+        <div class="contents" style="text-align:left;">
+          <p class="text-secondary">D:\HelloGit>git config --global user.email "00@gmail.com"</p>
+          <p class="text-secondary">D:\HelloGit>git config --global user.name "000"</p><br>
         </div>
-        <div class="row my text-center pt-3 pr-5 pl-5 pb-2">
-            <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 mx-auto pl-4 pr-4 mb-3 my">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git remote -v">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">생성된 리모트 목록들을 확인합니다</p>
-                <p class="text-white">리모트는 복수로 생성될 수 있으며, 각각 다른 계정에 연결 가능합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git remote add (리모트 이름) (내 리파지트리 주소).git">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">리모트가 없다면 리모트를 생성합니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git pull origin master">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">pull 과정을 거치지 않고 push를 하면 오류가 나기 때문에, 마스터 브랜치를 끌어오는 과정을 거칩니다</p>
-                <p class="text-white">origin은 리모트 이름이며, 꼭 origin이어야 할 필요는 없습니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git pull origin master --allow-unrelated-histories">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">이 과정에서 종종 'fatal: refusing to merge unrelated histories' 오류가 뜰 수 있습니다</p>
-                <p class="text-white">수정사항 병합 오류인데, 간단히 '--allow-unrelated-histories' 라는 강제 명령어로 병합해 줍니다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git push origin master">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">pull이 끝나면 push해 줍니다</p>
-            </div>
-            <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 mx-auto scrollBar mr-4 my">
-                <div class="contents" style="text-align:left;">
-                    <p class="text-secondary">C:\Users\Test\HelloGit>git push https://github.com/000/Git-to-Hell.git</p>
-                    <p class="text-secondary">//무작정 push해서 실패한 결과입니다</p>
-                    fatal: The current branch master has no upstream branch.<br>
-                    To push the current branch and set the remote as upstream, use<br>
-                       <br>
-                        git push --set-upstream https://github.com/000/Git-to-Hell.git master<br>
-                       <br>
-                    <p class="text-secondary">C:\Users\Test\HelloGit>git remote add origin https://github.com/000/Git-to-Hell.git</p>
-                      <p class="text-secondary">//리모트를 생성합니다</p>
-                       <br>
-                   <p class="text-secondary"> C:\Users\Test\HelloGit>git remote -v</p>
-                   <p class="text-secondary">리모트 목록을 확인합니다</p>
-                    origin  https://github.com/000/Git-to-Hell.git (fetch)<br>
-                    origin  https://github.com/000/Git-to-Hell.git (push)<br>
-                       <br>
-                    C:\Users\Test\HelloGit>git remote origin master<br>
-                    error: Unknown subcommand: origin<br>
-                    usage: git remote [-v | --verbose]<br>
-                       or: git remote add [-t branch>] [-m master>] [-f] [--tags | --no-tags] [--mirror=fetch|push>] name> url><br>
-                       or: git remote rename old> new><br>
-                       or: git remote remove name><br>
-                       or: git remote set-head name> (-a | --auto | -d | --delete | branch>)<br>
-                       or: git remote [-v | --verbose] show [-n] name><br>
-                       or: git remote prune [-n | --dry-run] name><br>
-                       or: git remote [-v | --verbose] update [-p | --prune] [(group> | remote>)...]<br>
-                       or: git remote set-branches [--add] name> branch>...<br>
-                       or: git remote get-url [--push] [--all] name><br>
-                       or: git remote set-url [--push] name> newurl> [oldurl>]<br>
-                       or: git remote set-url --add name> newurl><br>
-                       or: git remote set-url --delete name> url><br>
-                       <br>
-                        -v, --verbose         be verbose; must be placed before a subcommand
-                       <br>
-                   <p class="text-secondary"> C:\Users\Test\HelloGit>git pull origin master</p>
-                   <p class="text-secondary">//pull을 시도했지만 병합 오류가 출력됩니다</p>
-                    warning: no common commits<br>
-                    remote: Enumerating objects: 15, done.<br>
-                    remote: Counting objects: 100% (15/15), done.<br>
-                    remote: Compressing objects: 100% (10/10), done.<br>
-                    remote: Total 15 (delta 0), reused 12 (delta 0), pack-reused 0<br>
-                    Unpacking objects: 100% (15/15), done.<br>
-                    From https://github.com/000/Git-to-Hell<br>
-                     * branch            master     -> FETCH_HEAD<br>
-                     * [new branch]      master     -> origin/master<br>
-                    fatal: refusing to merge unrelated histories<br>
-                       <br>
-                    <p class="text-secondary">C:\Users\Test\HelloGit>git pull origin master --allow-unrelated-histories</p>
-                    <p class="text-secondary">--allow-unrelated-histories로 강제 병합해 줍니다</p>
-                    From https://github.com/000/Git-to-Hell<br>
-                     * branch            master     -> FETCH_HEAD<br>
-                    Merge made by the 'recursive' strategy.<br>
-                     .gitignore                             |    6 +<br>
-                     README.md                              |    1 +<br>
-                     WebContent/META-INF/MANIFEST.MF        |    3 +<br>
-                     WebContent/git_to_hell.html            |  354 +++++<br>
-                     WebContent/jquery.mCustomScrollbar.css | 1267 ++++++++++++++++<br>
-                     WebContent/jquery.mCustomScrollbar.js  | 2458 ++++++++++++++++++++++++++++++++<br>
-                     WebContent/mCSB_buttons.png            |  Bin 0 -> 2998 bytes<br>
-                     WebContent/path.png                    |  Bin 0 -> 81455 bytes<br>
-                     WebContent/space.jpg                   |  Bin 0 -> 44338 bytes<br>
-                     9 files changed, 4089 insertions(+)<br>
-                     create mode 100644 .gitignore<br>
-                     create mode 100644 README.md<br>
-                     create mode 100644 WebContent/META-INF/MANIFEST.MF<br>
-                     create mode 100644 WebContent/git_to_hell.html<br>
-                     create mode 100644 WebContent/jquery.mCustomScrollbar.css<br>
-                     create mode 100644 WebContent/jquery.mCustomScrollbar.js<br>
-                     create mode 100644 WebContent/mCSB_buttons.png<br>
-                     create mode 100644 WebContent/path.png<br>
-                     create mode 100644 WebContent/space.jpg<br>
-                    <p class="text-secondary">이제 push해도 되는 상태가 되었습니다</p>
-                     <br>
-                    <p class="text-secondary"> C:\Users\Test\HelloGit>git push origin master</p>
-                    <p class="text-secondary">해당 리모트에 파일을 push합니다</p>
-                    Enumerating objects: 6, done.<br>
-                    Counting objects: 100% (6/6), done.<br>
-                    Delta compression using up to 2 threads<br>
-                    Compressing objects: 100% (3/3), done.<br>
-                    Writing objects: 100% (5/5), 515 bytes | 57.00 KiB/s, done.<br>
-                    Total 5 (delta 1), reused 0 (delta 0)<br>
-                    remote: Resolving deltas: 100% (1/1), completed with 1 local object.<br>
-                    <p class="text-secondary">gitHub.com의 본인 리파지트리에 가서 파일이 모두 업데이트 되었음을 확인할 수 있습니다</p>
-                </div>
-            </div>
-        </div>  
-    <!--  action-->  
-        <div id="action10" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5 my">
-                <h2 class="text-white font-weight-bold mb-4">10. 협업방식</h2>
-                <h2 class="text-white font-weight-bold mb-4">①Collaborators</h2>
-                <h5 class="text-white mt-3">git에 대한 기본적인 사항에 대해 알아보았습니다</h5>
-                <h5 class="text-white mt-3">수정을 하고 커밋을 하지 않은 상태에서 push를 하면 많은 오류가 생긴다는 사실을 느꼈을 겁니다</h5>
-                <h5 class="text-white mt-3">이와 같이 Collaborators방식으로 협업을 하면 동시에 여러명이 코드를 수정하고 올리기 때문에 컨플릭트라는 오류가 빈번하게 발생합니다</h5>
-                <h5 class="text-white mt-3 mb-4">Collaborators방식은 리파지트리 소유자가 콜라보레이션할 사람에게 초대장을 보내 줌으로써 협업할 수 있습니다</h5>
-                <h2 class="text-white font-weight-bold mb-4">②pull Request</h2>
-                <h5 class="text-white mt-3">pull Request는 말 그대로 협업 요청을 보내는 겁니다</h5>
-                <h5 class="text-white mt-3">리파지트리 소유자가 승인을 해 줘야 원본 코드에 반영이 되므로 컨플릭트는 덜하다는 장점이 있습니다</h5>
-                <h5 class="text-white mt-3">pull Request 방법은 다음과 같습니다 : </h5>
-                <h5 class="text-white mt-3">Fork - 리파지트리 소유자의 주소로 clone - 내 pc에 저장 후 수정 작업 - 스테이징, 커밋</h5>
-                <h5 class="text-white mt-3">동일한 이름의 내 리파지트리에 수정본을 올림 - pull Request를 요청함 - 원본 리파지트리 소유자가 확인 후 커밋 혹은 거부</h5>
-                <h5 class="text-white mt-3">해당 파트에는 pull Request 방식만 살펴보도록 하겠습니다</h5>
-            </div>
+      </div>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action7" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5 my">
+      <h2 class="text-white font-weight-bold">7. gitHub에서 리파지트리 만들기 밎 삭제하기</h2>
+      <a href="https://github.com" target="_blank" class="btn btn-outline-light btn-lg mt-4">gitHub go!</a>
+    </div>
+  </div>
+  <div class="row mt-1 text-center pl-2 pr-2">
+    <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar-lg mb-5 my">
+      <div class="contents" style="text-align:left;">
+        <img src="img/r1.png"><br>
+        <p class="text-white">리파지트리 메뉴를 클릭합니다</p><br>
+        <img src="img/r2.png"><br>
+        <p class="text-white">new를 눌러 새 리파지트리를 만듭니다</p><br>
+        <img src="img/r3.png"><br>
+        <p class="text-white">리파지트리 이름을 쓰고, README란을 체크하고, 생성 버튼을 누릅니다</p><br>
+        <img src="img/r4.png"><br>
+        <p class="text-white">아래처럼 만들어진 리파지트리를 확인할 수 있습니다</p><br>
+        <img src="img/r5.png"><br>
+        <p class="text-white">이 리파지트리를 삭제하려면 setting 메뉴를 누릅니다</p><br>
+        <img src="img/r6.png"><br>
+        <p class="text-white">맨 아래로 내려서 Delete버튼을 클릭합니다</p><br>
+        <img src="img/r7.png"><br>
+        <p class="text-white">리파지트리 이름을 정확히 기재한 후 삭제버튼을 누릅니다</p><br>
+      </div>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action8" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-4 my">
+      <h2 class="text-white font-weight-bold mb-4">8. gitHub 리파지트리에서 파일 내려받기</h2>
+      <h5 class="text-white mt-3">※보통 리파지트리를 만들고 내 pc에 저장하는 순서는 이렇게 흘러갑니다</h5>
+      <h5 class="text-white mt-3">①gitHub.com에서 리파지트리를 만든다</h5>
+      <h5 class="text-white mt-3">②cmd 창을 켜서 clone 또는 pull을 사용해서 리파지트리를 내려받는다</h5>
+      <h5 class="text-white mt-3">③내려받은 파일을 수정한다</h5>
+      <h5 class="text-white mt-3">④cmd를 켜서 git add, git commit 등을 수행한다</h5>
+      <h5 class="text-white mt-3">⑤push를 사용해 리파지트리를 업데이트한다</h5>
+      <h5 class="text-white mt-5 font-weight-bold">먼저 리파지트리를 내려받아 내 pc에 저장하는 방법 부터 알아보겠습니다</h5>
+      <h5 class="text-white mt-3">1. 파일 복제하기(최초 1회만) : clone</h5>
+      <h5 class="text-white mt-3">2. 파일 내려받기(최초 1회 이후 보통 방식) : pull</h5>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-3 my">
+      <h5 class="text-white mt-1 font-weight-bold">※용어 정리 </h5>
+      <h5 class="text-white mt-2">clone : 통째로 받아서 초기화시키는 행위(초기 1회만 실행)</h5>
+      <h5 class="text-white mt-2">pull : 다운로드 명령(최신 갱신된 내용을 가져오는 것)</h5>
+      <h5 class="text-white mt-2">fetch : 서버에서 데이터를 다운받는 행위(임시브랜치에 가져오는 것)</h5>
+      <h5 class="text-white mt-2">merge : 가져온 다음 현재 브랜치에 병합하는 것</h5>
+      <h5 class="text-white mt-2">(fetch + merge = pull)</h5>
+    </div>
+  </div>
+  <div class="row text-center p-2">
+    <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12 mx-auto scrl my"><br>
+      <img src="img/rp1.png">
+      <p class="text-white">리파지트리의 주소를 복사합니다</p>
+    </div>
+  </div>
+  <div class="row my text-center pt-5 pr-5 pl-5 pb-2">
+    <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 mx-auto pl-4 pr-4 mb-3 my">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git clone 리파지트리주소.git">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row mt-1 mb-5 text-center pl-2 pr-2">
-            <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar-lg mb-5 my">
-                <div class="contents" style="text-align:left;">
-                    <img src="img/fork2.png"><br>
-                        <p class="text-white">먼저, 원본 리파지트리 소유자의 주소로 갑니다</p>
-                        <p class="text-white">그 다음 Fork를 눌러 <ins>자신의 리파지트리</ins>로 원본 리파지트리를 복사해 갑니다</p><br>
-                        <p class="text-white">내 리파지트리에 복사된 파일을 내 pc에 받아 수정하는 과정은 위에서 설명한 과정과 동일합니다</p><br>
-                    <img src="img/pr0.png"><br>
-                        <p class="text-white">내용물 수정 뒤, 모든 커밋 과정을 마치고 <ins>내 리파지트리</ins>에 결과물을 올립니다</p>
-                        <p class="text-white">그 후, <ins>내 리파지트리</ins>에서 pull Request 버튼을 클릭합니다</p><br>
-                    <img src="img/pr1.png"><br>
-                        <p class="text-white">create new pull Request 버튼을 클릭합니다</p><br>
-                    <img src="img/pr2.png"><br>
-                        <p class="text-white">create pull Request 버튼을 클릭합니다</p><br>
-                    <img src="img/pr3.png"><br>
-                        <p class="text-white">리퀘스트가 요청되면, 원본 소유자가 확인 후 커밋 혹은 거부를 합니다</p>
-                    <img src="img/commit1.png"><br>
-                    <img src="img/commit2.png"><br>
-                        <p class="text-white">수정되기 전, 수정되기 후 코드를 비교해서 확인할 수 있습니다</p>
-                        <p class="text-white">이 화면은 내가 보낸 pull request에서도 동일하게 나옵니다</p><br>
-                </div>
-            </div>
+      </div>
+      <p class="text-white">cmd창에서 파일을 받을 경로로 이동한 후, 해당 명령어를 입력합니다</p>
+      <p class="text-white">clone 자리에 pull이 들어가도 무방하나, 최초 다운로드를 할 때는 clone이 더 편리합니다</p>
+      <p class="text-white">pull은 따로 폴더를 만들어 놓고 다운로드 해야 하지만, clone은 폴더 째로 복제되기 때문입니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git init">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-    <!--  action-->
-        <div id="action11" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5 my">
-                <h2 class="text-white font-weight-bold">11. Conflict 해결하기</h2>
-                <h5 class="text-white mt-3">이 현상은 수정사항이 겹쳤을 때, 즉 커밋을 하지 않고 여러 번 수정했을 때 나타나는 에러입니다</h5>
-                <h5 class="text-white mt-3">컨플릭트가 발생한 파일을 찾아 내용을 고쳐주면 해결됩니다</h5>
-            </div>
+      </div>
+      <p class="text-white">내려받은 리파지트리(폴더)의 경로로 이동해, 해당 폴더를 저장소로 선언합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="copy nul exam02.txt">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row text-center pl-2 pr-2">
-            <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar-lg mb-5 my">
-                <div class="contents" style="text-align:left;">
-                    <p class="text-white">붉은색으로 표시한 곳을 기준으로 merge되지 않은 수정사항이 모두 나타납니다</p>
-                    <p class="text-white">이들 중 최종 수정한 내용만 남기고 모두 지워주시면 됩니다</p>
-                        <img src="img/conflict.png">
-                    <p class="text-white">(수정 전)</p>
-                        <img src="img/conflict2.png">
-                    <p class="text-white">(수정 후)</p>
-                    <p class="text-white">모든 작업이 끝났으면 수정 사항을 커밋한 후 push 합니다</p>
-                    <br>
-                    <p class="text-white">----------------------명령 프롬프트------------------------</p>
-                    <br>
-                    From https://github.com/000/web1234 <br>
-                     * branch            master     -> FETCH_HEAD <br>
-                     + 09312b1...7bfc8f4 master     -> origin/master  (forced update) <br>
-                    CONFLICT (add/add): <span style="color:red;">Merge conflict in README.md</span> <br>
-                    <p class="text-secondary">▲ 이 부분을 보면 어떤 파일에 에러가 났는지 알려줍니다</p>
-                    Auto-merging README.md <br>
-                    Automatic merge failed; fix conflicts and then commit the result. <br>
-                </div>
-            </div>
+      </div>
+      <p class="text-white">exam02.txt라는 임의 폴더를 만들어 수정 작업을 해 봅니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git status">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-    <!--  action-->
-        <div id="action12" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5 my">
-                <h2 class="text-white font-weight-bold">12. 계정 변경하기</h2>
-                <h5 class="text-white mt-3">다른 계정으로 로그인 하고 싶을 때 쓰이는 방법 중 하나입니다</h5>
-            </div>
+      </div>
+      <p class="text-white">상태를 확인하면, 커밋해야 할 목록이 뜹니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git add *">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row text-center pl-2 pr-2">
-            <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar-lg mb-5 my">
-                <div class="contents" style="text-align:center;"><br>
-                    <p class="text-white">제어판을 열어 표시된 경로를 따라 갑니다</p>
-                        <img src="img/account1.png"><br><br>
-                        <img src="img/account2.png"><br><br>
-                        <img src="img/account3.png"><br><br>
-                    <p class="text-white">삭제 후, 평소와 같이 수정작업을 합니다</p>
-                    <p class="text-white">그리고 push 명령을 내리는 순간, 새로 로그인 창이 뜹니다</p>
-                    <p class="text-white">로그인 후 작업을 마무리하면 되겠습니다</p>
-                    <br>
-                </div>
-            </div>
+      </div>
+      <p class="text-white">스테이징 합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git commit -m '19.6.13'">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-    <!--  action-->
-        <div id="action_last" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto my">
-                <h2 class="text-white font-weight-bold mb-4">《 단축기 및 기타 명령어 》</h2>
-            </div>
+      </div>
+      <p class="text-white">커밋합니다</p>
+    </div>
+    <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 mx-auto scrollBar mr-4 my">
+      <div class="contents" style="text-align:left;">
+        <p class="text-secondary">C:\Users\auswo>cd C:\Test</p>
+        <br>
+        <p class="text-secondary">C:\Test>git clone https://github.com/zzz/Git-to-Hell.git</p>
+        Cloning into 'Git-to-Hell'...<br>
+        remote: Enumerating objects: 15, done.<br>
+        remote: Counting objects: 100% (15/15), done.<br>
+        remote: Compressing objects: 100% (10/10), done.<br>
+        remote: Total 15 (delta 0), reused 12 (delta 0), pack-reused 0<br>
+        Unpacking objects: 100% (15/15), done.<br>
+        <br>
+        <p class="text-secondary"> C:\Test\Git-to-Hell>git init</p>
+        Initialized empty Git repository in C:Test\Git-to-Hell.git/<br>
+        <br>
+        <p class="text-secondary">C:\Test\Git-to-Hell>copy nul exam02.txt</p>
+        1개 파일이 복사되었습니다.<br>
+        <br>
+        <p class="text-secondary"> C:\Test\Git-to-Hell>exam02.txt</p>
+        <br>
+        <p class="text-secondary"> C:Test\Git-to-Hell>git status</p>
+        On branch master<br>
+        <br>
+        No commits yet<br>
+        <br>
+        Untracked files:<br>
+        (use "git add file..." to include in what will be committed)<br>
+        <br>
+        <p class="text-danger">exam02.txt</p>
+        <br>
+        nothing added to commit but untracked files present (use "git add" to track)<br>
+        <br>
+        <p class="text-secondary">C:Test\Git-to-Hell>git add *</p>
+        <br>
+        <p class="text-secondary">C:Test\Git-to-Hell>git commit -m "19.6.13"</p>
+        [master (root-commit) 3f6f60d] 19.6.13<br>
+        1 file changed, 1 insertion(+)<br>
+        create mode 100644 exam02.txt<br>
+      </div>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action9" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto my">
+      <h2 class="text-white font-weight-bold mb-4">9. gitHub 리파지트리에 업데이트한 파일 올리기</h2>
+      <h5 class="text-white mt-3">수정사항을 커밋한 후 리파지트리에 올리려면 pull을 먼저 수행해야 합니다</h5>
+      <h5 class="text-white mt-3">그 전에, remote를 생성합니다</h5>
+      <h5 class="text-white mt-3">clone을 하면 보통 origin이라는 이름으로 자동생성되지만, 확인 명령어로 리모트 확인 후 단계를 진행해 나가는 습관을 들이시기 바랍니다</h5>
+    </div>
+  </div>
+  <div class="row mt-4 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-3 my">
+      <h5 class="text-white mt-1 font-weight-bold">※파일을 push하기 전에 .gitignore 확장자를 가지는 파일을 생성, </h5>
+      <h5 class="text-white mt-3 font-weight-bold">아래 목록을 그대로 복사해 넣은 후 해당 폴더에 배치시킵니다</h5>
+      <h5 class="text-white mt-2">.classpath</h5>
+      <h5 class="text-white mt-2">.project</h5>
+      <h5 class="text-white mt-2">.settings</h5>
+      <h5 class="text-white mt-2">.class</h5>
+      <h5 class="text-white mt-2">build</h5>
+      <h5 class="text-white mt-3">해당 작업은 이클립스 등 자체 path를 가지는 IDE 사용자에 한해서 이뤄져야 합니다</h5>
+    </div>
+  </div>
+  <div class="row my text-center pt-3 pr-5 pl-5 pb-2">
+    <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12 mx-auto pl-4 pr-4 mb-3 my">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git remote -v">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row my text-center pt-3 pr-5 pl-5 pb-2 mb-5">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto pl-5 pr-5 mb-3 my">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="cd ..">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">상위 폴더로 이동</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="mkdir (Folder Name)">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">디렉토리(폴더) 만들기</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="rmdir /s (Folder Name)">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">폴더 삭제하기</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="dir">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">디렉토리 내용을 보여라</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="(Folder Name) + Tab">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">일부 폴더명만 입력하고 Tab을 누르면 자동완성</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="copy nul (File Name).txt">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">파일을 만드는 명령</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="del (File Name).txt">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">파일을 삭제하는 명령</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git log -2">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">로그를 위에서부터 2개만 보여라</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git checkout 030607">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">해당 시점의 로그로 돌아가라</p>
-                <p class="text-white">(키값은 처음 6자리만 입력해도 무방)</p>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto pl-5 pr-5 mb-3 my">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git checkout master">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">다시 로그 되돌리기, 살려내기</p>
-                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git checkout 8976b9 (File Name).txt">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">특정 시점의 로그에 있는 특정 파일만 가져오기</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git reset head">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">완전히 특정 시점의 로그로 돌아가기</p>
-                <p class="text-white">checkout master와의 차이 : HEAD는 여전히 master를 가리키고 있음</p>
-                <p class="text-white">reset은 시점을 돌리는 것</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git reset --hard 030607">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">강제로 특정 시점으로 돌아가며, 이전 로그는 모두 삭제한다</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git checkout master (File Name).txt">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">히스토리가 남아있다는 것을 전제로 한 복구 기능</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git remote -v">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">연결된 리모트 목록 출력</p>
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" value="git remote rm (Remote Name)">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
-                  </div>
-                </div>
-                <p class="text-white">리모트 연결 삭제</p>
-            </div>
-        </div>  
-    <!--  action-->
-        <div id="action_last2" class="row mt-5 text-center">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto my">
-                <h2 class="text-white font-weight-bold mb-4">***수고하셨습니다***</h2>
-                <h5 class="text-white mt-3">재미로 성향테스트나 하고 가세요!</h5>
-                <h5 class="text-white mt-5">Q. 나는 완전히 지친 채 귀가했다.</h5>
-                <h5 class="text-white mt-3">배가 고파 냉장고를 열었지만 음식이라곤 얼마 전 지인이 선물한 과일세트가 전부다.</h5> 
-                <h5 class="text-white mt-3">이걸로 간단히 때워야 겠다고 생각하며 맛을 보는데, 덜 익어 먹을 수가 없다.</h5>
-                <h5 class="text-white mt-3">이때, 나의 선택은?</h5>
-                <h5 class="text-white mt-5 endc" href=".endCard:nth-child(1)">A. 망설임 없이 전부 버리고 지갑부터 찾는다</h5>
-                <h5 class="text-white mt-3 endc" href=".endCard:nth-child(2)">B. 당장 맛있게 조리해 먹을 방법이 없는지 찾아 보기로 한다</h5>
-                <h5 class="text-white mt-3 endc" href=".endCard:nth-child(3)">C. 시간이 지나면 괜찮을거라 생각하며 익을 때까지 기다린다</h5>
-            </div>
+      </div>
+      <p class="text-white">생성된 리모트 목록들을 확인합니다</p>
+      <p class="text-white">리모트는 복수로 생성될 수 있으며, 각각 다른 계정에 연결 가능합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git remote add (리모트 이름) (내 리파지트리 주소).git">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row text-center pl-2 pr-2 mt-4 mb-5">
-            <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto p-5 mb-5 my endCard">
-              <h2 class="text-white font-weight-bold mb-4">Q. 울지 않는 새를 어떻게 할 것인가?</h2>
-              <h5 class="text-white mt-3 font-weight-bold">당신의 답 : 새가 울지 않는다면 죽인다</h5>
-               <p class="text-white">이 질문은 '울지 않는 새를 어떻게 할 것인가'에 관한 오다 노부나가, 도요토미 히데요시, 도쿠가와 이에야스의 답입니다. 
-               울지 않는 새는 쓸모없으니 죽이겠다고 답한 이는 오다 노부나가 입니다. 오다 노부나가는 무자비하고 다혈질이면서도 계산적이고, 매우 실용적인 인물이었습니다. 편견이 없고 안목 또한 탁월했으며, 천재적인 전술 실력에 무기 개발에도 능했습니다. 오다 노부나가의 성향을 단적으로 보여주는 예가 있습니다. 세력을 일으켜 교토를 점령했을 때, 오다 노부나가는 쇼군과 가신들을 모조리 죽였습니다. 그런데 그 중 황실 출신 요리사가 있었습니다. 이 요리사는 실력도 최고였을 뿐더러 쇼군가의 사람이 아니었기 때문에 살려두자는 여론이 강했습니다. 그러자 오다 노부나가는 요리사에게 요리를 시켰습니다. 요리 솜씨를 직접 확인한 후 괜찮으면 살려주고 그렇지 않으면 죽이기 위해서였습니다. 엄청난 카리스마의 소유자로, 남에게도 엄격하고 스스로에게도 강했던 노부나가는 말년에 부하에게 하극상 당해 비참한 최후를 맞이하게 됩니다.</p>
-            </div>
-            <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto p-5 mb-5 my endCard">
-              <h2 class="text-white font-weight-bold mb-4">Q. 울지 않는 새를 어떻게 할 것인가?</h2>
-              <h5 class="text-white mt-3 font-weight-bold">당신의 답 : 새를 울게 할 방법을 찾는다</h5>
-               <p class="text-white">이 질문은 '울지 않는 새를 어떻게 할 것인가'에 관한 오다 노부나가, 도요토미 히데요시, 도쿠가와 이에야스의 답입니다. 
-               새를 울게 할 방법을 찾는다고 답한 사람은 도요토미 히데요시입니다. 도요토미는 오다 노부나가가 죽자 권력의 핵심으로 떠오른 인물입니다. 당시 오다 노부나가의 심복이자 최대 경쟁자였던 도쿠가와 이에야스마저 굴복시키고 승승장구 합니다. 오다 노부나가가 그토록 바라던 전국 통일까지 이뤄냈습니다. 도요토미 히데요시는 천재적인 지략가였고 타고난 정치가였습니다만, 그만큼 타협도 잘 했습니다. 도요토미 히데요시의 정치적 승부수이자 자충수였던 임진왜란에 관해서도 다른 해석을 할 수 있습니다. 도요토미 히데요시는 전국 통일을 하는 과정에서 예수회 신부들에게 무기를 보급받았고, 그 자신은 신자를 약속했습니다. 하지만 막상 전국 통일 후 가톨릭 신자들이 늘어나자, 도요토미 히데요시는 위협을 느낌과 동시에 자신의 입지를 지킬 필요성을 느끼게 됩니다. 그래서 조선 정벌을 명분삼아 일으킨 것이 임진왜란입니다. 가톨릭으로 개종한 세력들을 모조리 외국 땅으로 파병보내 죽여버리고자 한 것입니다. 물론 이는 하나의 해석일 뿐, 역사적 사실에 관해서는 의견이 분분합니다. 어쨌든 땅이 늘어나면 가신들에게 나누어 줄 토지도 생기니 일거양득이었을 겁니다. 하지만 계획은 생각처럼 진행되지 않았고 도요토미 히데요시는 임진왜란 중 사망합니다. 설상가상으로 도요토미 히데요시는 죽자마자 권력을 빼앗깁니다. 그 후 한낱 전범 취급을 받으며 무덤이 폭파되는 등 치욕적인 일을 당하게 됩니다.</p>
-            </div>
-            <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto p-5 mb-5 my endCard">
-              <h2 class="text-white font-weight-bold mb-4">Q. 울지 않는 새를 어떻게 할 것인가?</h2>
-              <h5 class="text-white mt-3 font-weight-bold">당신의 답 : 새가 울 때까지 기다린다</h5>
-               <p class="text-white">이 질문은 '울지 않는 새를 어떻게 할 것인가'에 관한 오다 노부나가, 도요토미 히데요시, 도쿠가와 이에야스의 답입니다. 
-               새가 울 때까지 기다린다고 한 사람은 도쿠가와 이에야스입니다. 도쿠가와 이에야스는 나쁘게 말하면 우유부단하고, 좋게 말하면 인내심이 강했습니다. 오다 노부나가의 심복으로 지내며 그의 명령에 따라 자신의 장남과 배우자를 죽일 정도로 충성심 또한 컸습니다. 오다 노부나가 사후 도요토미 히데요시가 권력을 잡자 일선에서 물러나 철처히 권력욕을 숨기며 도요토미 히데요시의 감시에 동조하기도 했습니다. 밖에서는 오랫동안 아무것도 하지 않은 것처럼 보였지만, 도쿠가와 이에야스는 도요토미 히데요시가 임진왜란에 정신이 팔려 있는 동안 일본 내 자신의 입지를 강화합니다. 그리고 도요토미 히데요시 사후 권력을 거머쥐며, 센코쿠 시대 최후의 승리자로 자리매김합니다. 당신이 비범한 사람에 인내심이 강하다면 도쿠가와 이에야스와 같은 영광을 맞이하게 될 겁니다. 하지만 야망보다 사사로운 인맥에 사로잡혀 우유부단함을 버리지 못한다면 제갈량을 곁에 두고도 나라를 망국으로 만든 유비와도 같은 신세가 될 것입니다. 사실 도쿠가와 이에야스의 유산도 촉나라와 별로 다를 게 없습니다. 도쿠가와 이에야스가 세계 정세를 파악하지 못하고 쇄국정책을 편 탓에, 에도 막부는 서양 문물로 무장한 메이지 정부군에게 멸망하게 됩니다.</p>
-            </div>
+      </div>
+      <p class="text-white">리모트가 없다면 리모트를 생성합니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git pull origin master">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-<!--        footer-->
-        <div class="row my mb-5"></div><hr>
-        <div class="row">
-            <h5 class="text-white mt-4 pl-4 pr-4 mx-auto">Copyrightⓒ2019 by ABarthDew. All pictures cannot be copied without permission.</h5>
+      </div>
+      <p class="text-white">pull 과정을 거치지 않고 push를 하면 오류가 나기 때문에, 마스터 브랜치를 끌어오는 과정을 거칩니다</p>
+      <p class="text-white">origin은 리모트 이름이며, 꼭 origin이어야 할 필요는 없습니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git pull origin master --allow-unrelated-histories">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
         </div>
-        <div class="row my mt-4 mb-5"></div>
-    
-<script>
-$(function(){
-	$('button').click(function(){
-		$(this).parent().parent().find('.form-control').select();
-		document.execCommand("copy"); 
-		$(this).fadeIn();
-	});
-    $('.endc').on('click', function(){
+      </div>
+      <p class="text-white">이 과정에서 종종 'fatal: refusing to merge unrelated histories' 오류가 뜰 수 있습니다</p>
+      <p class="text-white">수정사항 병합 오류인데, 간단히 '--allow-unrelated-histories' 라는 강제 명령어로 병합해 줍니다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git push origin master">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">pull이 끝나면 push해 줍니다</p>
+    </div>
+    <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12 mx-auto scrollBar mr-4 my">
+      <div class="contents" style="text-align:left;">
+        <p class="text-secondary">C:\Users\Test\HelloGit>git push https://github.com/000/Git-to-Hell.git</p>
+        <p class="text-secondary">//무작정 push해서 실패한 결과입니다</p>
+        fatal: The current branch master has no upstream branch.<br>
+        To push the current branch and set the remote as upstream, use<br>
+        <br>
+        git push --set-upstream https://github.com/000/Git-to-Hell.git master<br>
+        <br>
+        <p class="text-secondary">C:\Users\Test\HelloGit>git remote add origin
+          https://github.com/000/Git-to-Hell.git</p>
+        <p class="text-secondary">//리모트를 생성합니다</p>
+        <br>
+        <p class="text-secondary"> C:\Users\Test\HelloGit>git remote -v</p>
+        <p class="text-secondary">리모트 목록을 확인합니다</p>
+        origin https://github.com/000/Git-to-Hell.git (fetch)<br>
+        origin https://github.com/000/Git-to-Hell.git (push)<br>
+        <br>
+        C:\Users\Test\HelloGit>git remote origin master<br>
+        error: Unknown subcommand: origin<br>
+        usage: git remote [-v | --verbose]<br>
+        or: git remote add [-t branch>] [-m master>] [-f] [--tags | --no-tags] [--mirror=fetch|push>] name> url><br>
+        or: git remote rename old> new><br>
+        or: git remote remove name><br>
+        or: git remote set-head name> (-a | --auto | -d | --delete | branch>)<br>
+        or: git remote [-v | --verbose] show [-n] name><br>
+        or: git remote prune [-n | --dry-run] name><br>
+        or: git remote [-v | --verbose] update [-p | --prune] [(group> | remote>)...]<br>
+        or: git remote set-branches [--add] name> branch>...<br>
+        or: git remote get-url [--push] [--all] name><br>
+        or: git remote set-url [--push] name> newurl> [oldurl>]<br>
+        or: git remote set-url --add name> newurl><br>
+        or: git remote set-url --delete name> url><br>
+        <br>
+        -v, --verbose be verbose; must be placed before a subcommand
+        <br>
+        <p class="text-secondary"> C:\Users\Test\HelloGit>git pull origin master</p>
+        <p class="text-secondary">//pull을 시도했지만 병합 오류가 출력됩니다</p>
+        warning: no common commits<br>
+        remote: Enumerating objects: 15, done.<br>
+        remote: Counting objects: 100% (15/15), done.<br>
+        remote: Compressing objects: 100% (10/10), done.<br>
+        remote: Total 15 (delta 0), reused 12 (delta 0), pack-reused 0<br>
+        Unpacking objects: 100% (15/15), done.<br>
+        From https://github.com/000/Git-to-Hell<br>
+        * branch master -> FETCH_HEAD<br>
+        * [new branch] master -> origin/master<br>
+        fatal: refusing to merge unrelated histories<br>
+        <br>
+        <p class="text-secondary">C:\Users\Test\HelloGit>git pull origin master --allow-unrelated-histories</p>
+        <p class="text-secondary">--allow-unrelated-histories로 강제 병합해 줍니다</p>
+        From https://github.com/000/Git-to-Hell<br>
+        * branch master -> FETCH_HEAD<br>
+        Merge made by the 'recursive' strategy.<br>
+        .gitignore | 6 +<br>
+        README.md | 1 +<br>
+        WebContent/META-INF/MANIFEST.MF | 3 +<br>
+        WebContent/git_to_hell.html | 354 +++++<br>
+        WebContent/jquery.mCustomScrollbar.css | 1267 ++++++++++++++++<br>
+        WebContent/jquery.mCustomScrollbar.js | 2458 ++++++++++++++++++++++++++++++++<br>
+        WebContent/mCSB_buttons.png | Bin 0 -> 2998 bytes<br>
+        WebContent/path.png | Bin 0 -> 81455 bytes<br>
+        WebContent/space.jpg | Bin 0 -> 44338 bytes<br>
+        9 files changed, 4089 insertions(+)<br>
+        create mode 100644 .gitignore<br>
+        create mode 100644 README.md<br>
+        create mode 100644 WebContent/META-INF/MANIFEST.MF<br>
+        create mode 100644 WebContent/git_to_hell.html<br>
+        create mode 100644 WebContent/jquery.mCustomScrollbar.css<br>
+        create mode 100644 WebContent/jquery.mCustomScrollbar.js<br>
+        create mode 100644 WebContent/mCSB_buttons.png<br>
+        create mode 100644 WebContent/path.png<br>
+        create mode 100644 WebContent/space.jpg<br>
+        <p class="text-secondary">이제 push해도 되는 상태가 되었습니다</p>
+        <br>
+        <p class="text-secondary"> C:\Users\Test\HelloGit>git push origin master</p>
+        <p class="text-secondary">해당 리모트에 파일을 push합니다</p>
+        Enumerating objects: 6, done.<br>
+        Counting objects: 100% (6/6), done.<br>
+        Delta compression using up to 2 threads<br>
+        Compressing objects: 100% (3/3), done.<br>
+        Writing objects: 100% (5/5), 515 bytes | 57.00 KiB/s, done.<br>
+        Total 5 (delta 1), reused 0 (delta 0)<br>
+        remote: Resolving deltas: 100% (1/1), completed with 1 local object.<br>
+        <p class="text-secondary">gitHub.com의 본인 리파지트리에 가서 파일이 모두 업데이트 되었음을 확인할 수 있습니다</p>
+      </div>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action10" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5 my">
+      <h2 class="text-white font-weight-bold mb-4">10. 협업방식</h2>
+      <h2 class="text-white font-weight-bold mb-4">①Collaborators</h2>
+      <h5 class="text-white mt-3">git에 대한 기본적인 사항에 대해 알아보았습니다</h5>
+      <h5 class="text-white mt-3">수정을 하고 커밋을 하지 않은 상태에서 push를 하면 많은 오류가 생긴다는 사실을 느꼈을 겁니다</h5>
+      <h5 class="text-white mt-3">이와 같이 Collaborators방식으로 협업을 하면 동시에 여러명이 코드를 수정하고 올리기 때문에 컨플릭트라는 오류가 빈번하게 발생합니다</h5>
+      <h5 class="text-white mt-3 mb-4">Collaborators방식은 리파지트리 소유자가 콜라보레이션할 사람에게 초대장을 보내 줌으로써 협업할 수 있습니다</h5>
+      <h2 class="text-white font-weight-bold mb-4">②pull Request</h2>
+      <h5 class="text-white mt-3">pull Request는 말 그대로 협업 요청을 보내는 겁니다</h5>
+      <h5 class="text-white mt-3">리파지트리 소유자가 승인을 해 줘야 원본 코드에 반영이 되므로 컨플릭트는 덜하다는 장점이 있습니다</h5>
+      <h5 class="text-white mt-3">pull Request 방법은 다음과 같습니다 : </h5>
+      <h5 class="text-white mt-3">Fork - 리파지트리 소유자의 주소로 clone - 내 pc에 저장 후 수정 작업 - 스테이징, 커밋</h5>
+      <h5 class="text-white mt-3">동일한 이름의 내 리파지트리에 수정본을 올림 - pull Request를 요청함 - 원본 리파지트리 소유자가 확인 후 커밋 혹은 거부</h5>
+      <h5 class="text-white mt-3">해당 파트에는 pull Request 방식만 살펴보도록 하겠습니다</h5>
+    </div>
+  </div>
+  <div class="row mt-1 mb-5 text-center pl-2 pr-2">
+    <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar-lg mb-5 my">
+      <div class="contents" style="text-align:left;">
+        <img src="img/fork2.png"><br>
+        <p class="text-white">먼저, 원본 리파지트리 소유자의 주소로 갑니다</p>
+        <p class="text-white">그 다음 Fork를 눌러
+          <ins>자신의 리파지트리</ins>
+          로 원본 리파지트리를 복사해 갑니다
+        </p>
+        <br>
+        <p class="text-white">내 리파지트리에 복사된 파일을 내 pc에 받아 수정하는 과정은 위에서 설명한 과정과 동일합니다</p><br>
+        <img src="img/pr0.png"><br>
+        <p class="text-white">내용물 수정 뒤, 모든 커밋 과정을 마치고
+          <ins>내 리파지트리</ins>
+          에 결과물을 올립니다
+        </p>
+        <p class="text-white">그 후,
+          <ins>내 리파지트리</ins>
+          에서 pull Request 버튼을 클릭합니다
+        </p>
+        <br>
+        <img src="img/pr1.png"><br>
+        <p class="text-white">create new pull Request 버튼을 클릭합니다</p><br>
+        <img src="img/pr2.png"><br>
+        <p class="text-white">create pull Request 버튼을 클릭합니다</p><br>
+        <img src="img/pr3.png"><br>
+        <p class="text-white">리퀘스트가 요청되면, 원본 소유자가 확인 후 커밋 혹은 거부를 합니다</p>
+        <img src="img/commit1.png"><br>
+        <img src="img/commit2.png"><br>
+        <p class="text-white">수정되기 전, 수정되기 후 코드를 비교해서 확인할 수 있습니다</p>
+        <p class="text-white">이 화면은 내가 보낸 pull request에서도 동일하게 나옵니다</p><br>
+      </div>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action11" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5 my">
+      <h2 class="text-white font-weight-bold">11. Conflict 해결하기</h2>
+      <h5 class="text-white mt-3">이 현상은 수정사항이 겹쳤을 때, 즉 커밋을 하지 않고 여러 번 수정했을 때 나타나는 에러입니다</h5>
+      <h5 class="text-white mt-3">컨플릭트가 발생한 파일을 찾아 내용을 고쳐주면 해결됩니다</h5>
+    </div>
+  </div>
+  <div class="row text-center pl-2 pr-2">
+    <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar-lg mb-5 my">
+      <div class="contents" style="text-align:left;">
+        <p class="text-white">붉은색으로 표시한 곳을 기준으로 merge되지 않은 수정사항이 모두 나타납니다</p>
+        <p class="text-white">이들 중 최종 수정한 내용만 남기고 모두 지워주시면 됩니다</p>
+        <img src="img/conflict.png">
+        <p class="text-white">(수정 전)</p>
+        <img src="img/conflict2.png">
+        <p class="text-white">(수정 후)</p>
+        <p class="text-white">모든 작업이 끝났으면 수정 사항을 커밋한 후 push 합니다</p>
+        <br>
+        <p class="text-white">----------------------명령 프롬프트------------------------</p>
+        <br>
+        From https://github.com/000/web1234 <br>
+        * branch master -> FETCH_HEAD <br>
+        + 09312b1...7bfc8f4 master -> origin/master (forced update) <br>
+        CONFLICT (add/add): <span style="color:red;">Merge conflict in README.md</span> <br>
+        <p class="text-secondary">▲ 이 부분을 보면 어떤 파일에 에러가 났는지 알려줍니다</p>
+        Auto-merging README.md <br>
+        Automatic merge failed; fix conflicts and then commit the result. <br>
+      </div>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action12" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto mb-5 my">
+      <h2 class="text-white font-weight-bold">12. 계정 변경하기</h2>
+      <h5 class="text-white mt-3">다른 계정으로 로그인 하고 싶을 때 쓰이는 방법 중 하나입니다</h5>
+    </div>
+  </div>
+  <div class="row text-center pl-2 pr-2">
+    <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar-lg mb-5 my">
+      <div class="contents" style="text-align:center;"><br>
+        <p class="text-white">제어판을 열어 표시된 경로를 따라 갑니다</p>
+        <img src="img/account1.png"><br><br>
+        <img src="img/account2.png"><br><br>
+        <img src="img/account3.png"><br><br>
+        <p class="text-white">삭제 후, 평소와 같이 수정작업을 합니다</p>
+        <p class="text-white">그리고 push 명령을 내리는 순간, 새로 로그인 창이 뜹니다</p>
+        <p class="text-white">로그인 후 작업을 마무리하면 되겠습니다</p>
+        <br>
+      </div>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action_last" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto my">
+      <h2 class="text-white font-weight-bold mb-4">《 단축기 및 기타 명령어 》</h2>
+    </div>
+  </div>
+  <div class="row my text-center pt-3 pr-5 pl-5 pb-2 mb-5">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto pl-5 pr-5 mb-3 my">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="cd ..">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">상위 폴더로 이동</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="mkdir (Folder Name)">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">디렉토리(폴더) 만들기</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="rmdir /s (Folder Name)">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">폴더 삭제하기</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="dir">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">디렉토리 내용을 보여라</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="(Folder Name) + Tab">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">일부 폴더명만 입력하고 Tab을 누르면 자동완성</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="copy nul (File Name).txt">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">파일을 만드는 명령</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="del (File Name).txt">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">파일을 삭제하는 명령</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git log -2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">로그를 위에서부터 2개만 보여라</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git checkout 030607">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">해당 시점의 로그로 돌아가라</p>
+      <p class="text-white">(키값은 처음 6자리만 입력해도 무방)</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mx-auto pl-5 pr-5 mb-3 my">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git checkout master">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">다시 로그 되돌리기, 살려내기</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git checkout 8976b9 (File Name).txt">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">특정 시점의 로그에 있는 특정 파일만 가져오기</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git reset head">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">완전히 특정 시점의 로그로 돌아가기</p>
+      <p class="text-white">checkout master와의 차이 : HEAD는 여전히 master를 가리키고 있음</p>
+      <p class="text-white">reset은 시점을 돌리는 것</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git reset --hard 030607">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">강제로 특정 시점으로 돌아가며, 이전 로그는 모두 삭제한다</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git checkout master (File Name).txt">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">히스토리가 남아있다는 것을 전제로 한 복구 기능</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git remote -v">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">연결된 리모트 목록 출력</p>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="git remote rm (Remote Name)">
+        <div class="input-group-append">
+          <button class="btn btn-outline-light" type="button" id="button-addon2">복사하기</button>
+        </div>
+      </div>
+      <p class="text-white">리모트 연결 삭제</p>
+    </div>
+  </div>
+  <!--  action-->
+  <div id="action_last2" class="row mt-5 text-center">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto my">
+      <h2 class="text-white font-weight-bold mb-4">***수고하셨습니다***</h2>
+      <h5 class="text-white mt-3">재미로 성향테스트나 하고 가세요!</h5>
+      <h5 class="text-white mt-5">Q. 나는 완전히 지친 채 귀가했다.</h5>
+      <h5 class="text-white mt-3">배가 고파 냉장고를 열었지만 음식이라곤 얼마 전 지인이 선물한 과일세트가 전부다.</h5>
+      <h5 class="text-white mt-3">이걸로 간단히 때워야 겠다고 생각하며 맛을 보는데, 덜 익어 먹을 수가 없다.</h5>
+      <h5 class="text-white mt-3">이때, 나의 선택은?</h5>
+      <h5 class="text-white mt-5 endc" href=".endCard:nth-child(1)">A. 망설임 없이 전부 버리고 지갑부터 찾는다</h5>
+      <h5 class="text-white mt-3 endc" href=".endCard:nth-child(2)">B. 당장 맛있게 조리해 먹을 방법이 없는지 찾아 보기로 한다</h5>
+      <h5 class="text-white mt-3 endc" href=".endCard:nth-child(3)">C. 시간이 지나면 괜찮을거라 생각하며 익을 때까지 기다린다</h5>
+    </div>
+  </div>
+  <div class="row text-center pl-2 pr-2 mt-4 mb-5">
+    <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto p-5 mb-5 my endCard">
+      <h2 class="text-white font-weight-bold mb-4">Q. 울지 않는 새를 어떻게 할 것인가?</h2>
+      <h5 class="text-white mt-3 font-weight-bold">당신의 답 : 새가 울지 않는다면 죽인다</h5>
+      <p class="text-white">이 질문은 '울지 않는 새를 어떻게 할 것인가'에 관한 오다 노부나가, 도요토미 히데요시, 도쿠가와 이에야스의 답입니다.
+        울지 않는 새는 쓸모없으니 죽이겠다고 답한 이는 오다 노부나가 입니다. 오다 노부나가는 무자비하고 다혈질이면서도 계산적이고, 매우 실용적인 인물이었습니다. 편견이 없고 안목 또한 탁월했으며, 천재적인
+        전술 실력에 무기 개발에도 능했습니다. 오다 노부나가의 성향을 단적으로 보여주는 예가 있습니다. 세력을 일으켜 교토를 점령했을 때, 오다 노부나가는 쇼군과 가신들을 모조리 죽였습니다. 그런데 그 중
+        황실 출신 요리사가 있었습니다. 이 요리사는 실력도 최고였을 뿐더러 쇼군가의 사람이 아니었기 때문에 살려두자는 여론이 강했습니다. 그러자 오다 노부나가는 요리사에게 요리를 시켰습니다. 요리 솜씨를 직접
+        확인한 후 괜찮으면 살려주고 그렇지 않으면 죽이기 위해서였습니다. 엄청난 카리스마의 소유자로, 남에게도 엄격하고 스스로에게도 강했던 노부나가는 말년에 부하에게 하극상 당해 비참한 최후를 맞이하게
+        됩니다.</p>
+    </div>
+    <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto p-5 mb-5 my endCard">
+      <h2 class="text-white font-weight-bold mb-4">Q. 울지 않는 새를 어떻게 할 것인가?</h2>
+      <h5 class="text-white mt-3 font-weight-bold">당신의 답 : 새를 울게 할 방법을 찾는다</h5>
+      <p class="text-white">이 질문은 '울지 않는 새를 어떻게 할 것인가'에 관한 오다 노부나가, 도요토미 히데요시, 도쿠가와 이에야스의 답입니다.
+        새를 울게 할 방법을 찾는다고 답한 사람은 도요토미 히데요시입니다. 도요토미는 오다 노부나가가 죽자 권력의 핵심으로 떠오른 인물입니다. 당시 오다 노부나가의 심복이자 최대 경쟁자였던 도쿠가와
+        이에야스마저 굴복시키고 승승장구 합니다. 오다 노부나가가 그토록 바라던 전국 통일까지 이뤄냈습니다. 도요토미 히데요시는 천재적인 지략가였고 타고난 정치가였습니다만, 그만큼 타협도 잘 했습니다. 도요토미
+        히데요시의 정치적 승부수이자 자충수였던 임진왜란에 관해서도 다른 해석을 할 수 있습니다. 도요토미 히데요시는 전국 통일을 하는 과정에서 예수회 신부들에게 무기를 보급받았고, 그 자신은 신자를
+        약속했습니다. 하지만 막상 전국 통일 후 가톨릭 신자들이 늘어나자, 도요토미 히데요시는 위협을 느낌과 동시에 자신의 입지를 지킬 필요성을 느끼게 됩니다. 그래서 조선 정벌을 명분삼아 일으킨 것이
+        임진왜란입니다. 가톨릭으로 개종한 세력들을 모조리 외국 땅으로 파병보내 죽여버리고자 한 것입니다. 물론 이는 하나의 해석일 뿐, 역사적 사실에 관해서는 의견이 분분합니다. 어쨌든 땅이 늘어나면
+        가신들에게 나누어 줄 토지도 생기니 일거양득이었을 겁니다. 하지만 계획은 생각처럼 진행되지 않았고 도요토미 히데요시는 임진왜란 중 사망합니다. 설상가상으로 도요토미 히데요시는 죽자마자 권력을
+        빼앗깁니다. 그 후 한낱 전범 취급을 받으며 무덤이 폭파되는 등 치욕적인 일을 당하게 됩니다.</p>
+    </div>
+    <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto p-5 mb-5 my endCard">
+      <h2 class="text-white font-weight-bold mb-4">Q. 울지 않는 새를 어떻게 할 것인가?</h2>
+      <h5 class="text-white mt-3 font-weight-bold">당신의 답 : 새가 울 때까지 기다린다</h5>
+      <p class="text-white">이 질문은 '울지 않는 새를 어떻게 할 것인가'에 관한 오다 노부나가, 도요토미 히데요시, 도쿠가와 이에야스의 답입니다.
+        새가 울 때까지 기다린다고 한 사람은 도쿠가와 이에야스입니다. 도쿠가와 이에야스는 나쁘게 말하면 우유부단하고, 좋게 말하면 인내심이 강했습니다. 오다 노부나가의 심복으로 지내며 그의 명령에 따라 자신의
+        장남과 배우자를 죽일 정도로 충성심 또한 컸습니다. 오다 노부나가 사후 도요토미 히데요시가 권력을 잡자 일선에서 물러나 철처히 권력욕을 숨기며 도요토미 히데요시의 감시에 동조하기도 했습니다. 밖에서는
+        오랫동안 아무것도 하지 않은 것처럼 보였지만, 도쿠가와 이에야스는 도요토미 히데요시가 임진왜란에 정신이 팔려 있는 동안 일본 내 자신의 입지를 강화합니다. 그리고 도요토미 히데요시 사후 권력을
+        거머쥐며, 센코쿠 시대 최후의 승리자로 자리매김합니다. 당신이 비범한 사람에 인내심이 강하다면 도쿠가와 이에야스와 같은 영광을 맞이하게 될 겁니다. 하지만 야망보다 사사로운 인맥에 사로잡혀 우유부단함을
+        버리지 못한다면 제갈량을 곁에 두고도 나라를 망국으로 만든 유비와도 같은 신세가 될 것입니다. 사실 도쿠가와 이에야스의 유산도 촉나라와 별로 다를 게 없습니다. 도쿠가와 이에야스가 세계 정세를 파악하지
+        못하고 쇄국정책을 편 탓에, 에도 막부는 서양 문물로 무장한 메이지 정부군에게 멸망하게 됩니다.</p>
+    </div>
+  </div>
+  <!--        footer-->
+  <div class="row my mb-5"></div>
+  <hr>
+  <div class="row">
+    <h5 class="text-white mt-4 pl-4 pr-4 mx-auto">Copyrightⓒ2019 by ABarthDew. All pictures cannot be copied without
+      permission.</h5>
+  </div>
+  <div class="row my mt-4 mb-5"></div>
+
+  <script>
+    $(function () {
+      $('button').click(function () {
+        $(this).parent().parent().find('.form-control').select();
+        document.execCommand("copy");
+        $(this).fadeIn();
+      });
+      $('.endc').on('click', function () {
         $('.endCard').slideUp();
         $($(this).attr('href')).slideDown();
-    });
-})
-</script>
+      });
+    })
+  </script>
 </body>
 </html>

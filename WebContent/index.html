@@ -1,999 +1,1239 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ABarthDew</title>
-	<link rel="shortcut icon" href="img/logo.png">
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<!--     scroll -->
-		<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css"/>
-		<script src="js/jquery.mCustomScrollbar.js"></script>
-<style>
-	body{background:url(img/space.jpg) repeat; background-size:20%;}
-     .upBtn{width:35px; height:35px; padding: 4px; position:fixed; bottom:20px; left:12px; border-radius:50%; opacity:0.7; z-index:999; box-shadow: 1px 2px 5px #000; cursor:pointer;}
-     .leftMenu{width:35px; height:35px; padding: 3px; position:fixed; bottom:70px; left:12px; border-radius:50%; opacity:0.7; z-index:999; box-shadow: 1px 2px 5px #000; cursor:pointer;}
-     .topmenu{margin:0 auto; background:url(img/space.jpg) repeat; background-size:25%; box-shadow: 1px 1px 5px #222;}
-     .modal-scroll{overflow: auto;}
-	 .scrollBar{padding:20px; overflow: auto; border-radius:5px; box-shadow: 0px 0px 15px #222;}
-	 .scrollBar-lg{padding:20px; overflow: auto; border-radius:5px; box-shadow: 0px 0px 15px #222;}
-     .modal-body a{color:#000; font-size:18px; line-height: 190%;}
-     .modal-body a:hover{text-decoration:none; opacity:0.7;}
-     hr{width:90%; box-shadow: 0px 0px 1px #fff;}
-     .nav-tabs .nav-link.active{background:none; color:#f5f5f5; border-bottom:2px solid #f5f5f5; border-top:none; border-left:none; border-right:none;}
-     .nav-tabs .nav-link:hover{background:rgba(255,255,255,0.1); border-bottom:2px solid #f5f5f5; border-top:none; border-left:none; border-right:none;}
-	/* 전체 폰트용 코드  */
-	@font-face {
-	font-family: 'S-CoreDream-3Light';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-	}
-	@font-face {
-		font-family: 'Eoe_Zno_L';
-		src:
-			url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_L.woff')
-			format('woff');
-		font-weight: normal;
-		font-style: normal;
-	}
-	* {
-		font-family: 'S-CoreDream-3Light';
-	}
-	.mt-2 {
-		font-family: 'Eoe_Zno_L';
-	}
-	/* 폰트용 코드  */
-	.headerFluid {
-   position: absolute;
-   z-index: 990;
-   background-color: rgba(255, 255, 255, 0.5);
-	}
-	.topMenuNavbar {
-   background-color: rgba(255, 255, 255, 0.1);
-   font-size: 14px;
-   font-weight: bold; /*text-shadow: 1px 1px 1px #999;*/
-	}
-	.topMenuToggleBtn {
-	   border: none;
-	}
-	.menuPosition-fixed {
-	   position: fixed;
-	   top: 0;
-	   left: 0;
-	   background: #f5f5f5;
-	   box-shadow: 0 5px 40px 0 rgba(0,0,0,0.3);
-	}
-	.navbar-light .navbar-nav .nav-link {
-	   color: #0d0d0d; margin:5px;
-	}
-	.nav-item:hover{background-color: rgba(255, 255, 255, 0.9);}
-	.text-shadow {
-	   text-shadow: 2px 2px 2px gray;
-	}
-	body{background:url(img/space.jpg) repeat; background-size:20%; margin:0;}
-	.intro{height:65px;}
-	.intromg{position:absolute; left:50%; margin-left:-200px;}
-	.mg{color:#f5f5f5; font-size:30px;}
-	.container{margin-top:80px;}
-	.container h5, h6{color:#f5f5f5;}
-	.planetIcon img{cursor: pointer; animation-duration: 2s; animation-delay: 2s;}
-	.hero1{animation: hero-octonaut1 2s alternate ease-in-out infinite;}
-	.hero2{animation: hero-octonaut2 2s alternate ease-in-out infinite;}
-	.planetIcon img:hover{opacity:0.7;}
-	.scrollBar, .scrollBar-lg{padding:20px; overflow: auto; border-radius:5px; box-shadow: 0px 0px 15px #222;}
-	@keyframes hero-octonaut1{
-	  0%{transform:translateY(-18px);}
-	  100%{transform:translateY(18px);}
-	}
-	@keyframes hero-octonaut2{
-	  0%{transform:translateY(18px);}
-	  100%{transform:translateY(-18px);}
-	}
-/* 	animation */
-	.growup{
-	   animation: growup 2s alternate ease-in-out infinite;
-	   will-change: transform;
-	   user-select: none;
-	   transition-duration:0.5s;
-	   filter: drop-shadow(5px 5px 5px #00000075);
-	}
-	@keyframes growup {
-	    85% {
-	        transform: rotate(3deg);
-	    }
-	    90% {
-	        transform: rotate(-5deg);
-	    }
-	    95% {
-	        transform: rotate(3deg);
-	    }
-	    100% {
-	        transform: rotate(0deg);
-	    }
-	}
-	#header{height:830px;}
-	.center{
-		width:10px;
-		height:10px;
-		background:gray;
-		border-radius: 50%;
-		position:absolute;
-		top:430px;
-		left:50%;
-		margin-left:-10px;
-	}
-	.spin1 {
-		height: 30px;
-		width: 70px;
-		border-radius: 50%;
-		border:solid 5px gray;
-	   
-		-webkit-animation-name: spin;
-		-webkit-animation-duration: 18.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-	  
-		position:absolute;
-		top:420px;
-		left:50%;
-		margin-left:-40px;
-	}
-	.spin2 {
-		height: 30px;
-		width: 70px;
-		border-radius: 50%;
-		border:solid 5px white;
-	   
-		-webkit-animation-name: spin;
-		-webkit-animation-duration: 18.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-		-webkit-animation-direction:reverse;
-	  
-		position:absolute;
-		top:420px;
-		left:50%;
-		margin-left:-40px;
-	}
-	.spin3 {
-		height: 70px;
-		width: 30px;
-		border-radius: 50%;
-		border:solid 5px #ddd;
-	   
-		-webkit-animation-name: spin;
-		-webkit-animation-duration: 18.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-	  
-		position:absolute;
-		top:400px;
-		left:50%;
-		margin-left:-20px;
-	}
-	.spin4 {
-		height: 70px;
-		width: 30px;
-		border-radius: 50%;
-		border:solid 5px #b9b9c8;
-	   
-		-webkit-animation-name: spin;
-		-webkit-animation-duration: 18.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-		-webkit-animation-direction:reverse;
-	  
-		position:absolute;
-		top:400px;
-		left:50%;
-		margin-left:-20px;
-	}
-	/* animation */
-	.spin5 {
-		width: 680px;
-		height: 680px;
-		border-radius: 50%;
-		border-top:dotted 3px #fff;
-		border-left:dashed 2px #fff;
-		border-bottom:dashed 1px #fff;
-		border-right:solid 1px #fff;
-	  
-		-webkit-animation-name: spin;
-		-webkit-animation-duration: 10.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-	  
-		position:absolute;
-		top:90px;
-		left:50%;
-		margin-left:-355px;
-	}
-		.spin5_1 {  
-		-webkit-animation-name: spin;
-		-webkit-animation-duration: 10.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-	  
-		position:absolute;
-		top:65px;
-		left:15px;
-	}
-	.inner_spin1_1{
-	width: 700px;
-	height: 700px;
-	border-radius: 50%;
-	border-top:dotted 1px #ffffbf;
-	border-left:solid 1px #ffffbf;
-	border-bottom:solid 1px #ffffbf;
-	border-right:solid 1px #ffffbf;
-  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 10.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-	-webkit-animation-direction:reverse;
-	
-	position:absolute;
-	top:80px;
-	left:50%;
-	margin-left:-365px;
-	}
-	.inner_spin1_2{
-	width: 670px;
-	height: 670px;
-	border-radius: 50%;
-	border:dashed 1px #f00;
-  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 10.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-  
-	position:absolute;
-	top:95px;
-	left:50%;
-	margin-left:-350px;
-	}
-	.inner_spin1_3{
-	width: 580px;
-	height: 580px;
-	border-radius: 50%;
-	border-top:solid 1px #00d9d9;
-	border-left:dotted 2px #00d9d9;
-	border-bottom:dashed 1px #00d9d9;
-	border-right:solid 2px #00d9d9;
-  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 10.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-	-webkit-animation-direction:reverse;
-  
-	position:absolute;
-	top:140px;
-	left:50%;
-	margin-left:-305px;
-	}
-.spin6 {
-	width: 480px;
-	height: 480px;
-	border-radius: 50%;
-	border-top:dotted 3px #ddd;
-	border-left:dashed 2px #ddd;
-	border-bottom:dashed 1px #ddd;
-	border-right:solid 1px #ddd;
-  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 12.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-direction:reverse;
-  
-	position:absolute;
-	top:190px;
-	left:50%;
-	margin-left:-260px;
-}
-	.spin6_1 {  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 12.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-	-webkit-animation-direction:reverse;
-  
-	position:absolute;
-	top:15px;
-	left:5px;
-}
-	.inner_spin2_1{
-	width: 500px;
-	height: 500px;
-	border-radius: 50%;
-	border:dotted 1px #ffa64c;
-  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 10.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-	-webkit-animation-direction:reverse;
-  
-	position:absolute;
-	top:180px;
-	left:50%;
-	margin-left:-265px;
-	}
-	.inner_spin2_2{
-	width: 430px;
-	height: 430px;
-	border-radius: 50%;
-	border-top:dotted 1px #ffbf00;
-	border-left:dotted 1px #ffff00;
-	border-bottom:dotted 2px #ffff73;
-	border-right:dashed 1px #ffff73;
-  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 10.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-  
-	position:absolute;
-	top:217px;
-	left:50%;
-	margin-left:-230px;
-	}
-.spin7 {
-	width: 280px;
-	height: 280px;
-	border-radius: 50%;
-	border-top:dotted 3px #ddd;
-	border-left:dashed 2px #ddd;
-	border-bottom:dashed 2px #ddd;
-	border-right:solid 2px #ddd;
-  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 10.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-  
-	position:absolute;
-	top:290px;
-	left:50%;
-	margin-left:-153px;
-}
-	.spin7_1 {  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 14.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-  
-	position:absolute;
-	top:5px;
-	left:5px;
-}
-	.spin7_2 {  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 10.5s;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
-  
-	position:absolute;
-	top:-35px;
-	left:-25px;
-}
-	.inner_spin3_1{
-	width: 290px;
-	height: 290px;
-	border-radius: 50%;
-	border:solid 1px #ff4c79;
-	border-left:solid 1px #ff4c79;
-	border-bottom:solid 1px #ff265c;
-	border-right:solid 1px #ff7396;
-  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 10.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-	-webkit-animation-direction:reverse;
-  
-	position:absolute;
-	top:285px;
-	left:50%;
-	margin-left:-158px;
-	}
-	.inner_spin3_2{
-	width: 300px;
-	height: 300px;
-	border-radius: 50%;
-	border-top:solid 1px #0080ff;
-	border-left:solid 1px #0080ff;
-	border-bottom:solid 1px #006cd9;
-	border-right:dashed 1px #0036d9;
-  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 10.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-	-webkit-animation-direction:reverse;
-  
-	position:absolute;
-	top:280px;
-	left:50%;
-	margin-left:-163px;
-	}
-	.inner_spin3_3{
-	width: 200px;
-	height: 200px;
-	border-radius: 50%;
-	border-top:solid 1px #ffffbf;
-	border-left:solid 0px #ffffbf;
-	border-bottom:solid 2px #ddd;
-	border-right:solid 0px #ddd;
-  
-	-webkit-animation-name: spin;
-	-webkit-animation-duration: 10.5s;
-		-webkit-animation-iteration-count: infinite;
-		-webkit-animation-timing-function: linear;
-	-webkit-animation-direction:reverse;
-  
-	position:absolute;
-	top:330px;
-	left:50%;
-	margin-left:-115px;
-	}
-.stop1,.stop2,.stop3{
-	cursor:pointer;
-}
-.stop1:hover,.stop2:hover,.stop3:hover{
-	opacity:0.7;
-}
-@-webkit-keyframes spin {
-  from   {  -webkit-transform: rotate(0deg); }
-  to   {  -webkit-transform: rotate(360deg); }
-}
-</style>
+  <meta charset="UTF-8">
+  <title>ABarthDew</title>
+  <link rel="shortcut icon" href="img/logo.png">
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
+  <!--     scroll -->
+  <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css"/>
+  <script src="js/jquery.mCustomScrollbar.js"></script>
+  <style>
+    body {
+      background: url(img/space.jpg) repeat;
+      background-size: 20%;
+    }
+
+    .upBtn {
+      width: 35px;
+      height: 35px;
+      padding: 4px;
+      position: fixed;
+      bottom: 20px;
+      left: 12px;
+      border-radius: 50%;
+      opacity: 0.7;
+      z-index: 999;
+      box-shadow: 1px 2px 5px #000;
+      cursor: pointer;
+    }
+
+    .leftMenu {
+      width: 35px;
+      height: 35px;
+      padding: 3px;
+      position: fixed;
+      bottom: 70px;
+      left: 12px;
+      border-radius: 50%;
+      opacity: 0.7;
+      z-index: 999;
+      box-shadow: 1px 2px 5px #000;
+      cursor: pointer;
+    }
+
+    .topmenu {
+      margin: 0 auto;
+      background: url(img/space.jpg) repeat;
+      background-size: 25%;
+      box-shadow: 1px 1px 5px #222;
+    }
+
+    .modal-scroll {
+      overflow: auto;
+    }
+
+    .scrollBar {
+      padding: 20px;
+      overflow: auto;
+      border-radius: 5px;
+      box-shadow: 0px 0px 15px #222;
+    }
+
+    .scrollBar-lg {
+      padding: 20px;
+      overflow: auto;
+      border-radius: 5px;
+      box-shadow: 0px 0px 15px #222;
+    }
+
+    .modal-body a {
+      color: #000;
+      font-size: 18px;
+      line-height: 190%;
+    }
+
+    .modal-body a:hover {
+      text-decoration: none;
+      opacity: 0.7;
+    }
+
+    hr {
+      width: 90%;
+      box-shadow: 0px 0px 1px #fff;
+    }
+
+    .nav-tabs .nav-link.active {
+      background: none;
+      color: #f5f5f5;
+      border-bottom: 2px solid #f5f5f5;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+
+    .nav-tabs .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-bottom: 2px solid #f5f5f5;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+
+    /* 전체 폰트용 코드  */
+    @font-face {
+      font-family: 'S-CoreDream-3Light';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'Eoe_Zno_L';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/Eoe_Zno_L.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      font-family: 'S-CoreDream-3Light';
+    }
+
+    .mt-2 {
+      font-family: 'Eoe_Zno_L';
+    }
+
+    /* 폰트용 코드  */
+    .headerFluid {
+      position: absolute;
+      z-index: 990;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .topMenuNavbar {
+      background-color: rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+      font-weight: bold; /*text-shadow: 1px 1px 1px #999;*/
+    }
+
+    .topMenuToggleBtn {
+      border: none;
+    }
+
+    .menuPosition-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #f5f5f5;
+      box-shadow: 0 5px 40px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+      color: #0d0d0d;
+      margin: 5px;
+    }
+
+    .nav-item:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .text-shadow {
+      text-shadow: 2px 2px 2px gray;
+    }
+
+    body {
+      background: url(img/space.jpg) repeat;
+      background-size: 20%;
+      margin: 0;
+    }
+
+    .intro {
+      height: 65px;
+    }
+
+    .intromg {
+      position: absolute;
+      left: 50%;
+      margin-left: -200px;
+    }
+
+    .mg {
+      color: #f5f5f5;
+      font-size: 30px;
+    }
+
+    .container {
+      margin-top: 80px;
+    }
+
+    .container h5, h6 {
+      color: #f5f5f5;
+    }
+
+    .planetIcon img {
+      cursor: pointer;
+      animation-duration: 2s;
+      animation-delay: 2s;
+    }
+
+    .hero1 {
+      animation: hero-octonaut1 2s alternate ease-in-out infinite;
+    }
+
+    .hero2 {
+      animation: hero-octonaut2 2s alternate ease-in-out infinite;
+    }
+
+    .planetIcon img:hover {
+      opacity: 0.7;
+    }
+
+    .scrollBar, .scrollBar-lg {
+      padding: 20px;
+      overflow: auto;
+      border-radius: 5px;
+      box-shadow: 0px 0px 15px #222;
+    }
+
+    @keyframes hero-octonaut1 {
+      0% {
+        transform: translateY(-18px);
+      }
+      100% {
+        transform: translateY(18px);
+      }
+    }
+
+    @keyframes hero-octonaut2 {
+      0% {
+        transform: translateY(18px);
+      }
+      100% {
+        transform: translateY(-18px);
+      }
+    }
+
+    /* 	animation */
+    .growup {
+      animation: growup 2s alternate ease-in-out infinite;
+      will-change: transform;
+      user-select: none;
+      transition-duration: 0.5s;
+      filter: drop-shadow(5px 5px 5px #00000075);
+    }
+
+    @keyframes growup {
+      85% {
+        transform: rotate(3deg);
+      }
+      90% {
+        transform: rotate(-5deg);
+      }
+      95% {
+        transform: rotate(3deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    #header {
+      height: 830px;
+    }
+
+    .center {
+      width: 10px;
+      height: 10px;
+      background: gray;
+      border-radius: 50%;
+      position: absolute;
+      top: 430px;
+      left: 50%;
+      margin-left: -10px;
+    }
+
+    .spin1 {
+      height: 30px;
+      width: 70px;
+      border-radius: 50%;
+      border: solid 5px gray;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 18.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+
+      position: absolute;
+      top: 420px;
+      left: 50%;
+      margin-left: -40px;
+    }
+
+    .spin2 {
+      height: 30px;
+      width: 70px;
+      border-radius: 50%;
+      border: solid 5px white;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 18.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: reverse;
+
+      position: absolute;
+      top: 420px;
+      left: 50%;
+      margin-left: -40px;
+    }
+
+    .spin3 {
+      height: 70px;
+      width: 30px;
+      border-radius: 50%;
+      border: solid 5px #ddd;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 18.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+
+      position: absolute;
+      top: 400px;
+      left: 50%;
+      margin-left: -20px;
+    }
+
+    .spin4 {
+      height: 70px;
+      width: 30px;
+      border-radius: 50%;
+      border: solid 5px #b9b9c8;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 18.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: reverse;
+
+      position: absolute;
+      top: 400px;
+      left: 50%;
+      margin-left: -20px;
+    }
+
+    /* animation */
+    .spin5 {
+      width: 680px;
+      height: 680px;
+      border-radius: 50%;
+      border-top: dotted 3px #fff;
+      border-left: dashed 2px #fff;
+      border-bottom: dashed 1px #fff;
+      border-right: solid 1px #fff;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+
+      position: absolute;
+      top: 90px;
+      left: 50%;
+      margin-left: -355px;
+    }
+
+    .spin5_1 {
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+
+      position: absolute;
+      top: 65px;
+      left: 15px;
+    }
+
+    .inner_spin1_1 {
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      border-top: dotted 1px #ffffbf;
+      border-left: solid 1px #ffffbf;
+      border-bottom: solid 1px #ffffbf;
+      border-right: solid 1px #ffffbf;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: reverse;
+
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      margin-left: -365px;
+    }
+
+    .inner_spin1_2 {
+      width: 670px;
+      height: 670px;
+      border-radius: 50%;
+      border: dashed 1px #f00;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+
+      position: absolute;
+      top: 95px;
+      left: 50%;
+      margin-left: -350px;
+    }
+
+    .inner_spin1_3 {
+      width: 580px;
+      height: 580px;
+      border-radius: 50%;
+      border-top: solid 1px #00d9d9;
+      border-left: dotted 2px #00d9d9;
+      border-bottom: dashed 1px #00d9d9;
+      border-right: solid 2px #00d9d9;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: reverse;
+
+      position: absolute;
+      top: 140px;
+      left: 50%;
+      margin-left: -305px;
+    }
+
+    .spin6 {
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      border-top: dotted 3px #ddd;
+      border-left: dashed 2px #ddd;
+      border-bottom: dashed 1px #ddd;
+      border-right: solid 1px #ddd;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 12.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: reverse;
+
+      position: absolute;
+      top: 190px;
+      left: 50%;
+      margin-left: -260px;
+    }
+
+    .spin6_1 {
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 12.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: reverse;
+
+      position: absolute;
+      top: 15px;
+      left: 5px;
+    }
+
+    .inner_spin2_1 {
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: dotted 1px #ffa64c;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: reverse;
+
+      position: absolute;
+      top: 180px;
+      left: 50%;
+      margin-left: -265px;
+    }
+
+    .inner_spin2_2 {
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      border-top: dotted 1px #ffbf00;
+      border-left: dotted 1px #ffff00;
+      border-bottom: dotted 2px #ffff73;
+      border-right: dashed 1px #ffff73;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+
+      position: absolute;
+      top: 217px;
+      left: 50%;
+      margin-left: -230px;
+    }
+
+    .spin7 {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border-top: dotted 3px #ddd;
+      border-left: dashed 2px #ddd;
+      border-bottom: dashed 2px #ddd;
+      border-right: solid 2px #ddd;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+
+      position: absolute;
+      top: 290px;
+      left: 50%;
+      margin-left: -153px;
+    }
+
+    .spin7_1 {
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 14.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+
+      position: absolute;
+      top: 5px;
+      left: 5px;
+    }
+
+    .spin7_2 {
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+
+      position: absolute;
+      top: -35px;
+      left: -25px;
+    }
+
+    .inner_spin3_1 {
+      width: 290px;
+      height: 290px;
+      border-radius: 50%;
+      border: solid 1px #ff4c79;
+      border-left: solid 1px #ff4c79;
+      border-bottom: solid 1px #ff265c;
+      border-right: solid 1px #ff7396;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: reverse;
+
+      position: absolute;
+      top: 285px;
+      left: 50%;
+      margin-left: -158px;
+    }
+
+    .inner_spin3_2 {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border-top: solid 1px #0080ff;
+      border-left: solid 1px #0080ff;
+      border-bottom: solid 1px #006cd9;
+      border-right: dashed 1px #0036d9;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: reverse;
+
+      position: absolute;
+      top: 280px;
+      left: 50%;
+      margin-left: -163px;
+    }
+
+    .inner_spin3_3 {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border-top: solid 1px #ffffbf;
+      border-left: solid 0px #ffffbf;
+      border-bottom: solid 2px #ddd;
+      border-right: solid 0px #ddd;
+
+      -webkit-animation-name: spin;
+      -webkit-animation-duration: 10.5s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      -webkit-animation-direction: reverse;
+
+      position: absolute;
+      top: 330px;
+      left: 50%;
+      margin-left: -115px;
+    }
+
+    .stop1, .stop2, .stop3 {
+      cursor: pointer;
+    }
+
+    .stop1:hover, .stop2:hover, .stop3:hover {
+      opacity: 0.7;
+    }
+
+    @-webkit-keyframes spin {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 <body>
 <!-- script -->
-	<script>
-		$(function(){
-		      var topMenuOffset = $('.menuScrollOption').offset(); 
-		      $(window).scroll(function() {
-		         if ($(document).scrollTop() > topMenuOffset.top) {
-		            $('.menuScrollOption').addClass('menuPosition-fixed');
-		         } else {
-		            $('.menuScrollOption').removeClass('menuPosition-fixed');
-		         }
-		      });
-			//planet, spin 클릭시 정지
-			$(".chooseSpin").hover(
-		    function() { 
-		     $(this).css({ 
-		     "animation-play-state" : "paused", 
-		     "-webkit-animation-play-state" : "paused", 
-		     "-moz-animation-play-state" : "paused", 
-		     "-o-animation-play-state" : "paused" 
-		     }); 
-		    }, 
-		    function() { 
-		     $(this).css({ 
-		     "animation-play-state": "running", 
-		     "-webkit-animation-play-state": "running", 
-		     "-moz-animation-play-state": "running", 
-		     "-o-animation-play-state": "running" 
-		     }); 
-		    } 
-		); 
-		//planet, spin 클릭 시 해당 메뉴로 스크롤 이동	
-			$('.move').on('click', function() {
-	            $('html, body').stop().animate({scrollTop:$($(this).attr('href')).offset().top-60});
-		    });
-			//scroll
-			$(".scrollBar").mCustomScrollbar({
-				axis:"y",
-				theme:"light",
-				autoExpandScrollbar:true,
-				advanced:{autoExpandHorizontalScroll:true},
-				setWidth: "100%",
-				setHeight: 550,
-				scrollButtons:{ enable: true }
-			});
-			$(".scrollBar-lg").mCustomScrollbar({
-				axis:"xy",
-				theme:"light",
-				autoExpandScrollbar:true,
-				advanced:{autoExpandHorizontalScroll:true},
-				setWidth: "100%",
-				setHeight: 500,
-				scrollButtons:{ enable: true }
-			});
-			$(".modal-scroll").mCustomScrollbar({
-				axis:"y",
-				theme:"light",
-				autoExpandScrollbar:true,
-				advanced:{autoExpandHorizontalScroll:true},
-				setHeight: "400",
-				scrollButtons:{ enable: true }
-			});
-            $('.upBtn').on("click", function(){
-                $('html, body').stop().animate({scrollTop:'0'}); 
-            });
-            $('.modal-body a').on('click', function(){
-               $('html, body').stop().animate({scrollTop:$($(this).attr('href')).offset().top-60}); 
-               $(this).attr('data-dismiss', 'modal'); 
-            });
-            $('.navbar-nav .nav-link').on('click', function(){
-            	$('html, body').stop().animate({scrollTop:$($(this).attr('href')).offset().top-60});
-            });
-            $('.planetIcon img').on('click', function(){
-            	$('html, body').stop().animate({scrollTop:$($(this).attr('href')).offset().top-60});
-            });
-		});
-	</script>
-	
+<script>
+  $(function () {
+    var topMenuOffset = $('.menuScrollOption').offset();
+    $(window).scroll(function () {
+      if ($(document).scrollTop() > topMenuOffset.top) {
+        $('.menuScrollOption').addClass('menuPosition-fixed');
+      } else {
+        $('.menuScrollOption').removeClass('menuPosition-fixed');
+      }
+    });
+    //planet, spin 클릭시 정지
+    $(".chooseSpin").hover(
+      function () {
+        $(this).css({
+          "animation-play-state": "paused",
+          "-webkit-animation-play-state": "paused",
+          "-moz-animation-play-state": "paused",
+          "-o-animation-play-state": "paused"
+        });
+      },
+      function () {
+        $(this).css({
+          "animation-play-state": "running",
+          "-webkit-animation-play-state": "running",
+          "-moz-animation-play-state": "running",
+          "-o-animation-play-state": "running"
+        });
+      }
+    );
+    //planet, spin 클릭 시 해당 메뉴로 스크롤 이동
+    $('.move').on('click', function () {
+      $('html, body').stop().animate({scrollTop: $($(this).attr('href')).offset().top - 60});
+    });
+    //scroll
+    $(".scrollBar").mCustomScrollbar({
+      axis: "y",
+      theme: "light",
+      autoExpandScrollbar: true,
+      advanced: {autoExpandHorizontalScroll: true},
+      setWidth: "100%",
+      setHeight: 550,
+      scrollButtons: {enable: true}
+    });
+    $(".scrollBar-lg").mCustomScrollbar({
+      axis: "xy",
+      theme: "light",
+      autoExpandScrollbar: true,
+      advanced: {autoExpandHorizontalScroll: true},
+      setWidth: "100%",
+      setHeight: 500,
+      scrollButtons: {enable: true}
+    });
+    $(".modal-scroll").mCustomScrollbar({
+      axis: "y",
+      theme: "light",
+      autoExpandScrollbar: true,
+      advanced: {autoExpandHorizontalScroll: true},
+      setHeight: "400",
+      scrollButtons: {enable: true}
+    });
+    $('.upBtn').on("click", function () {
+      $('html, body').stop().animate({scrollTop: '0'});
+    });
+    $('.modal-body a').on('click', function () {
+      $('html, body').stop().animate({scrollTop: $($(this).attr('href')).offset().top - 60});
+      $(this).attr('data-dismiss', 'modal');
+    });
+    $('.navbar-nav .nav-link').on('click', function () {
+      $('html, body').stop().animate({scrollTop: $($(this).attr('href')).offset().top - 60});
+    });
+    $('.planetIcon img').on('click', function () {
+      $('html, body').stop().animate({scrollTop: $($(this).attr('href')).offset().top - 60});
+    });
+  });
+</script>
+
 <!--	button-->
-    <span class="btn btn-dark upBtn text-light">
+<span class="btn btn-dark upBtn text-light">
       &olarr; 
     </span>
 <!--    left menu-->
-    <span class="btn btn-dark leftMenu text-light" data-toggle="modal" data-target="#exampleModalCenter">
+<span class="btn btn-dark leftMenu text-light" data-toggle="modal" data-target="#exampleModalCenter">
       &telrec;
     </span>
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="<exampleModalCent></exampleModalCent>erTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title font-weight-bold" id="exampleModalCenterTitle">메뉴 이동</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="<exampleModalCent></exampleModalCent>erTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-bold" id="exampleModalCenterTitle">메뉴 이동</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-scroll">
+        <ul>
+          <li><a href="#action11">Final Project. 나의 정원</a></li>
+          <li style="list-style:none;"><a href="#action12">-나의정원 둘러보기</a></li>
+          <li style="list-style:none;"><a href="#action13">-나의정원 시연영상</a></li>
+          <li><a href="#action14">Semi Project. 우야꼬</a></li>
+          <li style="list-style:none;"><a href="#action15">-WUYAKO 둘러보기</a></li>
+          <li style="list-style:none;"><a href="#action16">-WUYAKO 시연영상</a></li>
+          <li><a href="#action17">Study. 지옥으로 가는 git</a></li>
+          <li style="list-style:none;"><a href="gitToHell.html">-git to Hell</a></li>
+          <li><a href="#action18">Thank You</a></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 	contents -->
+<div class="container-fluid m-0 p-0 my">
+  <div class="row m-auto p-4 my">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 intro my">
+      <div class="intromg">
+        <img src="img/m1.png" class="m-3">
+        <img src="img/m2.png" class="m-3">
+        <img src="img/m3.png" class="m-3">
+        <img src="img/m4.png" class="m-3">
+        <img src="img/m5.png" class="m-3">
+        <img src="img/m6.png" class="m-3">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid headerFluid m-0 p-0 my">
+  <div class="row m-0 p-0 my">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 menuScrollOption my">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-0 p-0 my">
+          <nav class="navbar navbar-expand-lg navbar-light p-0 m-0 topMenuNavbar">
+            <button class="navbar-toggler topMenuToggleBtn" type="button"
+                    data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
-          </div>
-          <div class="modal-body modal-scroll">
-            <ul>
-                <li><a href="#action11">Final Project. 나의 정원</a></li>
-                <li style="list-style:none;"><a href="#action12">-나의정원 둘러보기</a></li>
-                <li style="list-style:none;"><a href="#action13">-나의정원 시연영상</a></li>
-                <li><a href="#action14">Semi Project. 우야꼬</a></li>
-                <li style="list-style:none;"><a href="#action15">-WUYAKO 둘러보기</a></li>
-                <li style="list-style:none;"><a href="#action16">-WUYAKO 시연영상</a></li>
-                <li><a href="#action17">Study. 지옥으로 가는 git</a></li>
-                <li style="list-style:none;"><a href="gitToHell.html">-git to Hell</a></li>
-                <li><a href="#action18">Thank You</a></li>
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav m-auto text-center">
+                <li class="nav-item"><a class="nav-link" href="#action11">final : 나의 정원<img src="img/one.png" width="30"
+                                                                                            height="30"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#action14">semi : WOYAKO<img src="img/two.png" width="30"
+                                                                                            height="30"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#action17">study : git to hell<img src="img/three.png"
+                                                                                                  width="30"
+                                                                                                  height="30"></a></li>
+                <li class="nav-item"><a class="nav-link" href="#action18">Thank You<img src="img/four.png" width="30"
+                                                                                        height="30"></a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container text-center my">
+  <div id="row my">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 m-auto d-none d-lg-block my">
+      <!-- animation header -->
+      <div id="header">
+        <!-- animation logo -->
+        <div class="center"></div>
+        <div class="spin1"></div>
+        <div class="spin2"></div>
+        <div class="spin3"></div>
+        <div class="spin4"></div>
+        <!-- animation -->
+        <div class="inner_spin1_1"></div>
+        <div class="inner_spin1_2"></div>
+        <div class="inner_spin1_3"></div>
+        <div class="spin5 stop1 chooseSpin">
+          <div class="spin5_1 move" href="#action11"><img src="img/planet1.png" width="120" height="120" alt=""></div>
+        </div>
+        <div class="inner_spin2_1"></div>
+        <div class="inner_spin2_2"></div>
+        <div class="spin6 stop2 chooseSpin">
+          <div class="spin6_1 move" href="#action14"><img src="img/planet3.png" width="140" height="110" alt=""></div>
+        </div>
+        <div class="inner_spin3_1"></div>
+        <div class="inner_spin3_2"></div>
+        <div class="inner_spin3_3"></div>
+        <div class="spin7 stop3 chooseSpin">
+          <div class="spin7_1 stop3 move" href="#action17"><img src="img/planet2.png" width="90" height="90" alt="">
+            <div class="spin7_2 stop4 move"><img src="img/planet4.png" width="50" height="50" alt=""></div>
           </div>
         </div>
       </div>
     </div>
-	
-<!-- 	contents -->
-	<div class="container-fluid m-0 p-0 my">
-		<div class="row m-auto p-4 my">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 intro my">
-				<div class="intromg">
-					<img src="img/m1.png" class="m-3">
-					<img src="img/m2.png" class="m-3">
-					<img src="img/m3.png" class="m-3">
-					<img src="img/m4.png" class="m-3">
-					<img src="img/m5.png" class="m-3">
-					<img src="img/m6.png" class="m-3">
-				</div>
-			</div>	
-		</div>
-	</div>
-	<div class="container-fluid headerFluid m-0 p-0 my">
-		<div class="row m-0 p-0 my">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 menuScrollOption my">
-				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-0 p-0 my">
-						<nav class="navbar navbar-expand-lg navbar-light p-0 m-0 topMenuNavbar">
-							<button class="navbar-toggler topMenuToggleBtn" type="button"
-								data-toggle="collapse" data-target="#navbarSupportedContent"
-								aria-controls="navbarSupportedContent" aria-expanded="false"
-								aria-label="Toggle navigation">
-								<span class="navbar-toggler-icon"></span>
-							</button>
-							<div class="collapse navbar-collapse" id="navbarSupportedContent">
-								<ul class="navbar-nav m-auto text-center">
-									<li class="nav-item"><a class="nav-link" href="#action11">final : 나의 정원<img src="img/one.png" width="30" height="30"></a></li>
-			                        <li class="nav-item"><a class="nav-link" href="#action14">semi : WOYAKO<img src="img/two.png" width="30" height="30"></a></li>
-			                        <li class="nav-item"><a class="nav-link" href="#action17">study : git to hell<img src="img/three.png" width="30" height="30"></a></li>
-			                        <li class="nav-item"><a class="nav-link" href="#action18">Thank You<img src="img/four.png" width="30" height="30"></a></li>
-								</ul>
-							</div>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>	
-	<div class="container text-center my">
-		<div id="row my">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 m-auto d-none d-lg-block my">
-			<!-- animation header -->
-				<div id="header">
-				<!-- animation logo -->
-						<div class="center"></div>
-						<div class="spin1"></div>
-						<div class="spin2"></div>
-						<div class="spin3"></div>
-						<div class="spin4"></div>
-				<!-- animation -->
-						<div class="inner_spin1_1"></div>
-						<div class="inner_spin1_2"></div>
-						<div class="inner_spin1_3"></div>
-						<div class="spin5 stop1 chooseSpin">
-							<div class="spin5_1 move" href="#action11"><img src="img/planet1.png"  width="120" height="120" alt=""></div>
-						</div>
-						<div class="inner_spin2_1"></div>
-						<div class="inner_spin2_2"></div>
-						<div class="spin6 stop2 chooseSpin">
-							<div class="spin6_1 move" href="#action14"><img src="img/planet3.png"  width="140" height="110" alt=""></div>
-						</div>
-						<div class="inner_spin3_1"></div>
-						<div class="inner_spin3_2"></div>
-						<div class="inner_spin3_3"></div>
-						<div class="spin7 stop3 chooseSpin">
-							<div class="spin7_1 stop3 move" href="#action17"><img src="img/planet2.png"  width="90" height="90" alt="">
-								<div class="spin7_2 stop4 move"><img src="img/planet4.png" width="50" height="50" alt=""></div>
-							</div>
-						</div>
-					</div>
-			</div>
-	<!-- 		animation -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2 pb-2 m-auto planetIcon my">
-				<img src="img/planet1.png"  width="130" height="130" alt="" class="p-2 hero1" href="#action11">
-				<img src="img/planet2.png"  width="100" height="100" alt="" class="p-2 hero2" href="#action14">
-				<img src="img/planet3.png"  width="170" height="140" alt="" class="p-2 hero1" href="#action17">
-				<img src="img/planet4.png" width="70" height="70" alt="" class="p-2 hero2" href="#action18">
-			</div>
-<!-- 			my garden -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-4 p-4 mg my" id="action11">
-				Final Project. 나의 정원
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-4 mg my">
-				 : 인터넷상에 생성된 나만의 정원에서 수확물 구독하기
-			</div> 
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 mb-2 my">
-				<h5>&ldquo;단순히 인터넷 쇼핑을 하는 것만이 아닌,</h5>  
-				<h5>그곳에 나의 정원을 만들고 소유하는 건 어떨까?&rdquo;</h5>
-				<h5 class="mt-4">&ldquo;가지고는 싶은데, 관리하기는 귀찮고...</h5>
-				<h5>그렇다면 공유 정원과 비밀 정원으로 공간을 나누자!&rdquo;</h5>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-5 my">
-			  <button type="button" class="btn btn-outline-light btn-sm">#Spring</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#Maven</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#MyBatis</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#JSP</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#JSON</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#JDBC</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#Ajax</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#Javascript</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#JQuery</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#GitHub</button>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 mygardenPPT1 my">
-            	<script>
-            		for(var i=1; i<=28; i++){
-            			$('.mygardenPPT1').append('<img src="ppt/mygarden'+i+'.png" width="100%">');
-            		}
-            	</script>
-		    </div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-4 mg my" id="action12">
-				 &Lang;나의정원 둘러보기&Rang;
-			</div> 
-			<nav>
-			  <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-			    <a class="nav-item nav-link active text-light" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">홈</a>
-			    <a class="nav-item nav-link text-light" id="nav-mypage-tab" data-toggle="tab" href="#nav-mypage" role="tab" aria-controls="nav-mypage" aria-selected="false">계정</a>
-			    <a class="nav-item nav-link text-light" id="nav-bag-tab" data-toggle="tab" href="#nav-bag" role="tab" aria-controls="nav-bag" aria-selected="false">상품</a>
-			    <a class="nav-item nav-link text-light" id="nav-public-tab" data-toggle="tab" href="#nav-public" role="tab" aria-controls="nav-public" aria-selected="false">공유정원</a>
-			    <a class="nav-item nav-link text-light" id="nav-buy-tab" data-toggle="tab" href="#nav-buy" role="tab" aria-controls="nav-buy" aria-selected="false">구독</a>
-			    <a class="nav-item nav-link text-light" id="nav-private-tab" data-toggle="tab" href="#nav-private" role="tab" aria-controls="nav-private" aria-selected="false">비밀정원</a>
-			    <a class="nav-item nav-link text-light" id="nav-board-tab" data-toggle="tab" href="#nav-board" role="tab" aria-controls="nav-board" aria-selected="false">게시판</a>
-			    <a class="nav-item nav-link text-light" id="nav-admin-tab" data-toggle="tab" href="#nav-admin" role="tab" aria-controls="nav-admin" aria-selected="false">관리자</a>
-			  </div>
-			</nav>
-			<div class="tab-content" id="nav-tabContent">
-			  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>메인화면</li></h5>
-	            	<img src="ppt/mygarden-main.png" width="100%">
-	            	<h5 class="text-left mt-3"><li>검색기능</li></h5>
-	            	<img src="ppt/mygarden-search.png" width="100%">
-	            	<h5 class="text-left mt-3"><li>사이트 소개</li></h5>
-	            	<img src="ppt/mygarden-about.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-mypage" role="tabpanel" aria-labelledby="nav-mypage-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>일반 로그인, 소셜 로그인</li></h5>
-	            	<h6 class="text-left font-weight-bold">* 네이버, 카카오 로그인 API</h6>
-	            	<h6 class="text-left">-소셜 로그인을 이용하면 번거로운 가입 과정을 거치지 않아도 사이트 이용 가능</h6>
-	            	<h6 class="text-left">-회원가입 연동, 로그아웃, 회원탈퇴가 가능 </h6>
-	            	<img src="ppt/mygarden-login.png" width="100%">
-	            	<h5 class="text-left mt-3"><li>회원가입</li></h5>
-	            	<h6 class="text-left">-regex로 형식 검증 / ajax로 실시간 중복여부 검증</h6>
-	            	<h6 class="text-left">-프로필 파일 확장자 검증</h6>
-	            	<h6 class="text-left">-smtp로 발송된 인증번호 검증 후 나머지 양식이 slideDown됨</h6>
-	            	<img src="ppt/mygarden-join.png" width="100%">
-	            	<h5 class="text-left mt-3"><li>마이페이지</li></h5>
-	            	<h6 class="text-left">-사용자의 모든 정보 제공</h6>
-	            	<h6 class="text-left">-개인정보, 구매내역, 최근 구독내역 등을 열람할 수 있으며, 회원탈퇴 메뉴도 제공</h6>
-	            	<h6 class="text-left">-상단 회색 박스의 정원이름, 프로필 사진은 ajax로 실시간 수정이 가능</h6>
-	            	<h6 class="text-left">-소셜회원이 아닐 경우, 상세정보 수정은 비밀번호로 회원 검증</h6>
-	            	<h6 class="text-left font-weight-bold mt-2">* 마이페이지 개요화면</h6>
-	            	<h6 class="text-left">-자바 캘린더를 이용한 달력 화면 구현(1년치 주문내역을 한눈에 / 주문 후 바로 반영)</h6>
-	            	<h6 class="text-left">-Tooltip : 해당 칸에 대한 정확한 날짜를 보여줌</h6>
-	            	<h6 class="text-left">-색 : 주문 수에 따라 칸의 색이 진해짐</h6>
-	            	<h6 class="text-left">-녹색 박스 클릭 시, 간단한 주문정보와 상태가 slideDown으로 나타남</h6>
-	            	<h6 class="text-left font-weight-bold mt-2">* 주문내역 화면</h6>
-	            	<h6 class="text-left">-주문내역에 관한 상세 정보를 확인할 수 있음</h6>
-	            	<h6 class="text-left">-주문 상태와 조회기간에 따라 조회가능</h6>
-	            	<img src="ppt/mygarden-mypage.png" width="100%">
-	            	<h6 class="text-left font-weight-bold mt-3">* 배송추적 화면(스윗트래커 API)</h6>
-	            	<h6 class="text-left">-스윗트래커 API를 이용한 배송 추적 기능 구현</h6>
-	            	<img src="ppt/12.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-bag" role="tabpanel" aria-labelledby="nav-bag-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>상세페이지</li></h5>
-	            	<h6 class="text-left">-fixed된 주문서로 언제든 상품수량을 정하고 장바구니에 담을 수 있는 기능 구현</h6>
-	            	<h6 class="text-left">-상세페이지 하단에 질문과 후기, 댓글을 쓸 수 있는 기능 구현</h6>
-	            	<h6 class="text-left">-‘도움돼요’를 누르면 추천수가 올라가고, 추천수가 높은 후기는 메인화면에 노출</h6>
-	            	<img src="ppt/mygarden-detail.png" width="100%">
-	            	<h5 class="text-left mt-3"><li>장바구니</li></h5>
-	            	<img src="ppt/mygarden-bag.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-public" role="tabpanel" aria-labelledby="nav-public-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>공유정원</li></h5>
-	            	<img src="ppt/mygarden-public.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>구독하기</li></h5>
-	            	<h6 class="text-left">-정기구독 선택 화면(주문화면)</h6>
-	            	<h6 class="text-left">-아임포트 API를 이용한 카드결제, 무통장 입금 기능 구현</h6>
-	            	<img src="ppt/mygarden-buy.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-private" role="tabpanel" aria-labelledby="nav-private-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>비밀정원</li></h5>
-	            	<img src="ppt/mygarden-private.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-board" role="tabpanel" aria-labelledby="nav-board-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>자유게시판</li></h5>
-	            	<h6 class="text-left">-레시피나 질문 글을 쓸 수 있는 자유게시판 기능 구현</h6>
-	            	<h6 class="text-left">-각 글마다 댓글 쓰기, 수정 기능 구현</h6>
-	            	<h6 class="text-left">-페이징 기능으로 깔끔한 레이아웃 구현, 검색 기능으로 원하는 글 검색 가능</h6>
-	            	<img src="ppt/mygarden-board.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-admin" role="tabpanel" aria-labelledby="nav-admin-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-4 my">
-	            	<h5 class="text-left mt-1"><li>관리자페이지</li></h5>
-	            	<h6 class="text-left">-회원관리, 상품관리 등 각종 관리가 가능한 페이지</h6>
-	            	<h6 class="text-left">-chart.js : 총 판매금액, 취소내역, 수익 등 사이트 운영에 필요한 통계 제공</h6>
-	            	<h6 class="text-left">-transaction, trigger : 트랜잭션과 트리거를 이용한 주문, 배송내역 관리</h6>
-	            	<img src="ppt/mygarden-admin.png" width="100%">
-			    </div>
-			  </div>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-2 mg my" id="action13">
-				 <img src="img/camera.png">&nbsp;나의정원 시연영상
-	            <h5 class="text-center mt-1">* 우측 상단의 <img src="img/list.png" width="50" height="50"> 표시를 눌러 전체 영상을 감상하세요!</h5>
-			</div> 
-		 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar-lg pr-5 pl-5 mb-5 my">
-	           	<iframe width="100%" height="450" src="https://www.youtube.com/embed/videoseries?list=PLj4yBzAaL0HgCUHJ0KCpgWIMe2OA9feFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>​
-		    </div>
-<!-- 			wuyako -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-4 p-4 mg my" id="action14">
-				Semi Project. 우야꼬
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-4 mg my">
-				 : 디지털 소외계층을 위한 무인주문기 체험 사이트
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 mb-2 my">
-				<h5>&ldquo;디지털 소외계층이 날로 늘어가는 지금,</h5>  
-				<h5>매장 곳곳에는 무인주문기가 보급되고 있다&rdquo;</h5>
-				<h5 class="mt-4">&ldquo;무인 주문기 사용을 어려워하는 사람들을 위해</h5>
-				<h5>기기 사용을 체험하고 학습할 공간을 마련해주면 어떨까?&rdquo;</h5>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-5 my">
-			  <button type="button" class="btn btn-outline-light btn-sm">#RegEX</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#Selenium</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#JSP</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#JSON</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#JDBC</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#Ajax</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#Javascript</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#JQuery</button>
-			  <button type="button" class="btn btn-outline-light btn-sm">#Google Developers</button>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-4 mygardenPPT2 my">
-            	<script>
-            		for(var i=1; i<=30; i++){
-            			$('.mygardenPPT2').append('<img src="ppt/wuyako'+i+'.png" width="100%">');
-            		}
-            	</script>
-		    </div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 mg my" id="action15">
-				 &Lang;WUYAKO 둘러보기&Rang;
-			</div> 
-			<nav>
-			  <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-			    <a class="nav-item nav-link active text-light" id="nav-home2-tab" data-toggle="tab" href="#nav-home2" role="tab" aria-controls="nav-home2" aria-selected="true">홈</a>
-			    <a class="nav-item nav-link text-light" id="nav-about2-tab" data-toggle="tab" href="#nav-about2" role="tab" aria-controls="nav-about2" aria-selected="false">소개</a>
-			    <a class="nav-item nav-link text-light" id="nav-game2-tab" data-toggle="tab" href="#nav-game2" role="tab" aria-controls="nav-game2" aria-selected="false">체험하기</a>
-			    <a class="nav-item nav-link text-light" id="nav-search2-tab" data-toggle="tab" href="#nav-search2" role="tab" aria-controls="nav-search2" aria-selected="false">유튜브 검색</a>
-			    <a class="nav-item nav-link text-light" id="nav-mypage2-tab" data-toggle="tab" href="#nav-mypage2" role="tab" aria-controls="nav-mypage2" aria-selected="false">마이페이지</a>
-			    <a class="nav-item nav-link text-light" id="nav-board2-tab" data-toggle="tab" href="#nav-board2" role="tab" aria-controls="nav-board2" aria-selected="false">게시판</a>
-			    <a class="nav-item nav-link text-light" id="nav-admin2-tab" data-toggle="tab" href="#nav-admin2" role="tab" aria-controls="nav-admin2" aria-selected="false">관리자</a>
-			  </div>
-			</nav>
-			<div class="tab-content" id="nav-tabContent">
-			  <div class="tab-pane fade show active" id="nav-home2" role="tabpanel" aria-labelledby="nav-home2-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<img src="ppt/wuyako-home.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-about2" role="tabpanel" aria-labelledby="nav-about2-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<img src="ppt/wuyako-about.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-game2" role="tabpanel" aria-labelledby="nav-game2-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>무인주문기 체험을 하며 원리를 학습할 수 있는 페이지</li></h5>
-	            	<h6 class="text-left">-지시사항을 이행하게끔 도와주는 포인터를 자바 스크립트로 구현</h6>
-	            	<h6 class="text-left">-게임 시작 시, 난수로 이루어진 코드 부여</h6>
-	            	<h6 class="text-left">-게임 종료 후, 코드는 삭제되나 회원일 경우 마이페이지에 결과 저장</h6>
-	            	<h6 class="text-left">-TTS API를 사용해 텍스트를 음성으로 치환시켜주는 기능 구현</h6>
-	            	<h6 class="text-left">-무인주문기 체험을 위한 UI 구현</h6>
-	            	<h6 class="text-left">-중복을 제거한 로직으로 매 게임마다 메뉴 배치가 바뀜</h6>
-	            	<h6 class="text-left">-Selenium을 이용한 실시간 메뉴 업데이트 가능</h6>
-	            	<h6 class="text-left">-팝업으로 추가 정보 전달</h6>
-	            	<h6 class="text-left">-최종 결과를 확인할 수 있는 페이지 제공</h6>
-	            	<h6 class="text-left">-음성, 문자인식 검색기능 제공</h6>
-	            	<h6 class="text-left">-가까운 매장 찾기, 지도 찾기 기능 제공</h6>
-	            	<img src="ppt/wuyako-game1.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-search2" role="tabpanel" aria-labelledby="nav-search2-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>유투브 검색을 하며 더 많은 정보를 접할 수 있는 페이지</li></h5>
-	            	<h6 class="text-left">-구글 디벨로퍼스 API</h6>
-	            	<h6 class="text-left">-키워드로 유튜브 영상 실시간검색 가능, 더 많은 정보에 접근 가능</h6>
-	            	<h6 class="text-left">-페이징 기능으로 편리한 탐색 기능</h6>
-	            	<img src="ppt/wuyako-youtube.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-mypage2" role="tabpanel" aria-labelledby="nav-mypage2-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<img src="ppt/wuyako-mypage.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-board2" role="tabpanel" aria-labelledby="nav-board2-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
-	            	<h5 class="text-left mt-1"><li>회원들이 자유롭게 글을 올릴 수 있는 자유게시판</li></h5>
-	            	<h6 class="text-left">-페이징 기법을 통한 게시판 글 목록 및 페이지 </h6>
-	            	<h6 class="text-left">-네비게이터와 검색기능 구현</h6>
-	            	<h6 class="text-left">-댓글 등록 기능 및 삭제, 수정 기능 구현</h6>
-	            	<h6 class="text-left">-관리자의 답변 작성 유/무 확인 기능</h6>
-	            	<h6 class="text-left">-썸머노트를 활용하여 이미지를 첨부한 게시글 등록이 가능</h6>
-	            	<img src="ppt/wuyako-freeboard.png" width="100%">
-			    </div>
-			  </div>
-			  <div class="tab-pane fade" id="nav-admin2" role="tabpanel" aria-labelledby="nav-admin2-tab">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-4 my">
-	            	<h5 class="text-left mt-1"><li>사이트 관리, 회원관리, 통계 확인을 할 수 있는 관리자 페이지</li></h5>
-	            	<h6 class="text-left">-스케줄러를 활용, 매일 자정에 방문자 수 업데이트</h6>
-	            	<h6 class="text-left">-유저관리를 통한 불량 유저차단 및 복원 가능</h6>
-	            	<h6 class="text-left">-차트 JS를 이용한 최근 한달 방문자 수 및 성별 누적 통계</h6>
-	            	<h6 class="text-left">-연령대별 회원 수 통계</h6>
-	            	<h6 class="text-left">-관리자가 게시판 관리 및 답변 작성 가능</h6>
-	            	<img src="ppt/wuyako-admin.png" width="100%">
-			    </div>
-			  </div>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-2 mg my" id="action16">
-				 <img src="img/camera.png">&nbsp;WUYAKO 시연영상
-	            <h5 class="text-center mt-1">* 우측 상단의 <img src="img/list.png" width="50" height="50"> 표시를 눌러 전체 영상을 감상하세요!</h5>
-			</div> 
-		 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar-lg pr-5 pl-5 mb-5 my">
-	           	<iframe width="100%" height="450" src="https://www.youtube.com/embed/videoseries?list=PLj4yBzAaL0HgU9M_c5uPf_fdN128dtkbl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>​
-		    </div>
-<!-- 		    git to hell -->
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-5 pt-5 pb-4 mg my" id="action17">
-				Study. 지옥으로 가는 git
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-4 mg my">
-				 : 버전관리 툴 git을 토대로 한 프로그래밍 스터디
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-3 my">
-				<h5>&ldquo;버전관리로 프로그래밍 공부도 하고,</h5>  
-				<h5>gitHub 잔디밭까지 관리하기!&rdquo;</h5>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4 my">
-				<a href="gitToHell.html" class="btn btn-outline-light btn-lg">
-					<img src="img/fire.png"><img src="img/fire.png"><img src="img/fire.png">
-					 click!
-					<img src="img/fire.png"><img src="img/fire.png"><img src="img/fire.png"> 
-				</a>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
-			 	<div class="row mt-1 pl-2 pr-2">
-		            <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar mb-2 my">
-		                <div class="contents bg-dark text-light text-left">
-		                C:\Users\user>git<br>
-						These are common Git commands used in various situations:<br>
-						start a working area (see also: git help tutorial)<br>
-						clone Clone a repository into a new directory<br>
-						init Create an empty Git repository or reinitialize an existing one<br>
-						work on the current change (see also: git help everyday)<br>
-						add Add file contents to the index<br>
-						mv Move or rename a file, a directory, or a symlink<br>
-						reset Reset current HEAD to the specified state<br>
-						rm Remove files from the working tree and from the index<br>
-						examine the history and state (see also: git help revisions)<br>
-						bisect Use binary search to find the commit that introduced a bug<br>
-						grep Print lines matching a pattern<br>
-						log Show commit logs<br>
-						show Show various types of objects<br>
-						status Show the working tree status<br>
-						grow, mark and tweak your common history<br>
-						branch List, create, or delete branches<br>
-						checkout Switch branches or restore working tree files<br>
-						commit Record changes to the repository<br>
-						diff Show changes between commits, commit and working tree, etc<br>
-						merge Join two or more development histories together<br>
-						rebase Reapply commits on top of another base tip<br>
-						tag Create, list, delete or verify a tag object signed with GPG<br>
-						collaborate (see also: git help workflows)<br>
-						fetch Download objects and refs from another repository<br>
-						pull Fetch from and integrate with another repository or a local branch<br>
-						push Update remote refs along with associated objects<br>
-						'git help -a' and 'git help -g' list available subcommands and some<br>
-						to read about a specific subcommand or concept.<br>
-		                </div>
-		            </div>
-		        </div>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-3 text-center my">
-		<img src="img/fire.png">
-		<img src="img/fire.png">
-		<img src="img/fire.png">
-		<img src="img/fire.png">
-		<img src="img/fire.png">
-		<img src="img/fire.png">
-	</div>
+    <!-- 		animation -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2 pb-2 m-auto planetIcon my">
+      <img src="img/planet1.png" width="130" height="130" alt="" class="p-2 hero1" href="#action11">
+      <img src="img/planet2.png" width="100" height="100" alt="" class="p-2 hero2" href="#action14">
+      <img src="img/planet3.png" width="170" height="140" alt="" class="p-2 hero1" href="#action17">
+      <img src="img/planet4.png" width="70" height="70" alt="" class="p-2 hero2" href="#action18">
+    </div>
+    <!-- 			my garden -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-4 p-4 mg my" id="action11">
+      Final Project. 나의 정원
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-4 mg my">
+      : 인터넷상에 생성된 나만의 정원에서 수확물 구독하기
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 mb-2 my">
+      <h5>&ldquo;단순히 인터넷 쇼핑을 하는 것만이 아닌,</h5>
+      <h5>그곳에 나의 정원을 만들고 소유하는 건 어떨까?&rdquo;</h5>
+      <h5 class="mt-4">&ldquo;가지고는 싶은데, 관리하기는 귀찮고...</h5>
+      <h5>그렇다면 공유 정원과 비밀 정원으로 공간을 나누자!&rdquo;</h5>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-5 my">
+      <button type="button" class="btn btn-outline-light btn-sm">#Spring</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#Maven</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#MyBatis</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#JSP</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#JSON</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#JDBC</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#Ajax</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#Javascript</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#JQuery</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#GitHub</button>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 mygardenPPT1 my">
+      <script>
+        for (var i = 1; i <= 28; i++) {
+          $('.mygardenPPT1').append('<img src="ppt/mygarden' + i + '.png" width="100%">');
+        }
+      </script>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-4 mg my" id="action12">
+      &Lang;나의정원 둘러보기&Rang;
+    </div>
+    <nav>
+      <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active text-light" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+           aria-controls="nav-home" aria-selected="true">홈</a>
+        <a class="nav-item nav-link text-light" id="nav-mypage-tab" data-toggle="tab" href="#nav-mypage" role="tab"
+           aria-controls="nav-mypage" aria-selected="false">계정</a>
+        <a class="nav-item nav-link text-light" id="nav-bag-tab" data-toggle="tab" href="#nav-bag" role="tab"
+           aria-controls="nav-bag" aria-selected="false">상품</a>
+        <a class="nav-item nav-link text-light" id="nav-public-tab" data-toggle="tab" href="#nav-public" role="tab"
+           aria-controls="nav-public" aria-selected="false">공유정원</a>
+        <a class="nav-item nav-link text-light" id="nav-buy-tab" data-toggle="tab" href="#nav-buy" role="tab"
+           aria-controls="nav-buy" aria-selected="false">구독</a>
+        <a class="nav-item nav-link text-light" id="nav-private-tab" data-toggle="tab" href="#nav-private" role="tab"
+           aria-controls="nav-private" aria-selected="false">비밀정원</a>
+        <a class="nav-item nav-link text-light" id="nav-board-tab" data-toggle="tab" href="#nav-board" role="tab"
+           aria-controls="nav-board" aria-selected="false">게시판</a>
+        <a class="nav-item nav-link text-light" id="nav-admin-tab" data-toggle="tab" href="#nav-admin" role="tab"
+           aria-controls="nav-admin" aria-selected="false">관리자</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <h5 class="text-left mt-1">
+            <li>메인화면</li>
+          </h5>
+          <img src="ppt/mygarden-main.png" width="100%">
+          <h5 class="text-left mt-3">
+            <li>검색기능</li>
+          </h5>
+          <img src="ppt/mygarden-search.png" width="100%">
+          <h5 class="text-left mt-3">
+            <li>사이트 소개</li>
+          </h5>
+          <img src="ppt/mygarden-about.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-mypage" role="tabpanel" aria-labelledby="nav-mypage-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <h5 class="text-left mt-1">
+            <li>일반 로그인, 소셜 로그인</li>
+          </h5>
+          <h6 class="text-left font-weight-bold">* 네이버, 카카오 로그인 API</h6>
+          <h6 class="text-left">-소셜 로그인을 이용하면 번거로운 가입 과정을 거치지 않아도 사이트 이용 가능</h6>
+          <h6 class="text-left">-회원가입 연동, 로그아웃, 회원탈퇴가 가능 </h6>
+          <img src="ppt/mygarden-login.png" width="100%">
+          <h5 class="text-left mt-3">
+            <li>회원가입</li>
+          </h5>
+          <h6 class="text-left">-regex로 형식 검증 / ajax로 실시간 중복여부 검증</h6>
+          <h6 class="text-left">-프로필 파일 확장자 검증</h6>
+          <h6 class="text-left">-smtp로 발송된 인증번호 검증 후 나머지 양식이 slideDown됨</h6>
+          <img src="ppt/mygarden-join.png" width="100%">
+          <h5 class="text-left mt-3">
+            <li>마이페이지</li>
+          </h5>
+          <h6 class="text-left">-사용자의 모든 정보 제공</h6>
+          <h6 class="text-left">-개인정보, 구매내역, 최근 구독내역 등을 열람할 수 있으며, 회원탈퇴 메뉴도 제공</h6>
+          <h6 class="text-left">-상단 회색 박스의 정원이름, 프로필 사진은 ajax로 실시간 수정이 가능</h6>
+          <h6 class="text-left">-소셜회원이 아닐 경우, 상세정보 수정은 비밀번호로 회원 검증</h6>
+          <h6 class="text-left font-weight-bold mt-2">* 마이페이지 개요화면</h6>
+          <h6 class="text-left">-자바 캘린더를 이용한 달력 화면 구현(1년치 주문내역을 한눈에 / 주문 후 바로 반영)</h6>
+          <h6 class="text-left">-Tooltip : 해당 칸에 대한 정확한 날짜를 보여줌</h6>
+          <h6 class="text-left">-색 : 주문 수에 따라 칸의 색이 진해짐</h6>
+          <h6 class="text-left">-녹색 박스 클릭 시, 간단한 주문정보와 상태가 slideDown으로 나타남</h6>
+          <h6 class="text-left font-weight-bold mt-2">* 주문내역 화면</h6>
+          <h6 class="text-left">-주문내역에 관한 상세 정보를 확인할 수 있음</h6>
+          <h6 class="text-left">-주문 상태와 조회기간에 따라 조회가능</h6>
+          <img src="ppt/mygarden-mypage.png" width="100%">
+          <h6 class="text-left font-weight-bold mt-3">* 배송추적 화면(스윗트래커 API)</h6>
+          <h6 class="text-left">-스윗트래커 API를 이용한 배송 추적 기능 구현</h6>
+          <img src="ppt/12.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-bag" role="tabpanel" aria-labelledby="nav-bag-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <h5 class="text-left mt-1">
+            <li>상세페이지</li>
+          </h5>
+          <h6 class="text-left">-fixed된 주문서로 언제든 상품수량을 정하고 장바구니에 담을 수 있는 기능 구현</h6>
+          <h6 class="text-left">-상세페이지 하단에 질문과 후기, 댓글을 쓸 수 있는 기능 구현</h6>
+          <h6 class="text-left">-‘도움돼요’를 누르면 추천수가 올라가고, 추천수가 높은 후기는 메인화면에 노출</h6>
+          <img src="ppt/mygarden-detail.png" width="100%">
+          <h5 class="text-left mt-3">
+            <li>장바구니</li>
+          </h5>
+          <img src="ppt/mygarden-bag.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-public" role="tabpanel" aria-labelledby="nav-public-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <h5 class="text-left mt-1">
+            <li>공유정원</li>
+          </h5>
+          <img src="ppt/mygarden-public.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-buy" role="tabpanel" aria-labelledby="nav-buy-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <h5 class="text-left mt-1">
+            <li>구독하기</li>
+          </h5>
+          <h6 class="text-left">-정기구독 선택 화면(주문화면)</h6>
+          <h6 class="text-left">-아임포트 API를 이용한 카드결제, 무통장 입금 기능 구현</h6>
+          <img src="ppt/mygarden-buy.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-private" role="tabpanel" aria-labelledby="nav-private-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <h5 class="text-left mt-1">
+            <li>비밀정원</li>
+          </h5>
+          <img src="ppt/mygarden-private.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-board" role="tabpanel" aria-labelledby="nav-board-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <h5 class="text-left mt-1">
+            <li>자유게시판</li>
+          </h5>
+          <h6 class="text-left">-레시피나 질문 글을 쓸 수 있는 자유게시판 기능 구현</h6>
+          <h6 class="text-left">-각 글마다 댓글 쓰기, 수정 기능 구현</h6>
+          <h6 class="text-left">-페이징 기능으로 깔끔한 레이아웃 구현, 검색 기능으로 원하는 글 검색 가능</h6>
+          <img src="ppt/mygarden-board.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-admin" role="tabpanel" aria-labelledby="nav-admin-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-4 my">
+          <h5 class="text-left mt-1">
+            <li>관리자페이지</li>
+          </h5>
+          <h6 class="text-left">-회원관리, 상품관리 등 각종 관리가 가능한 페이지</h6>
+          <h6 class="text-left">-chart.js : 총 판매금액, 취소내역, 수익 등 사이트 운영에 필요한 통계 제공</h6>
+          <h6 class="text-left">-transaction, trigger : 트랜잭션과 트리거를 이용한 주문, 배송내역 관리</h6>
+          <img src="ppt/mygarden-admin.png" width="100%">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-2 mg my" id="action13">
+      <img src="img/camera.png">&nbsp;나의정원 시연영상
+      <h5 class="text-center mt-1">* 우측 상단의 <img src="img/list.png" width="50" height="50"> 표시를 눌러 전체 영상을 감상하세요!</h5>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar-lg pr-5 pl-5 mb-5 my">
+      <iframe width="100%" height="450"
+              src="https://www.youtube.com/embed/videoseries?list=PLj4yBzAaL0HgCUHJ0KCpgWIMe2OA9feFY" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      ​
+    </div>
+    <!-- 			wuyako -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-4 p-4 mg my" id="action14">
+      Semi Project. 우야꼬
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-4 mg my">
+      : 디지털 소외계층을 위한 무인주문기 체험 사이트
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 mb-2 my">
+      <h5>&ldquo;디지털 소외계층이 날로 늘어가는 지금,</h5>
+      <h5>매장 곳곳에는 무인주문기가 보급되고 있다&rdquo;</h5>
+      <h5 class="mt-4">&ldquo;무인 주문기 사용을 어려워하는 사람들을 위해</h5>
+      <h5>기기 사용을 체험하고 학습할 공간을 마련해주면 어떨까?&rdquo;</h5>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-5 my">
+      <button type="button" class="btn btn-outline-light btn-sm">#RegEX</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#Selenium</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#JSP</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#JSON</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#JDBC</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#Ajax</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#Javascript</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#JQuery</button>
+      <button type="button" class="btn btn-outline-light btn-sm">#Google Developers</button>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-4 mygardenPPT2 my">
+      <script>
+        for (var i = 1; i <= 30; i++) {
+          $('.mygardenPPT2').append('<img src="ppt/wuyako' + i + '.png" width="100%">');
+        }
+      </script>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-4 mg my" id="action15">
+      &Lang;WUYAKO 둘러보기&Rang;
+    </div>
+    <nav>
+      <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active text-light" id="nav-home2-tab" data-toggle="tab" href="#nav-home2" role="tab"
+           aria-controls="nav-home2" aria-selected="true">홈</a>
+        <a class="nav-item nav-link text-light" id="nav-about2-tab" data-toggle="tab" href="#nav-about2" role="tab"
+           aria-controls="nav-about2" aria-selected="false">소개</a>
+        <a class="nav-item nav-link text-light" id="nav-game2-tab" data-toggle="tab" href="#nav-game2" role="tab"
+           aria-controls="nav-game2" aria-selected="false">체험하기</a>
+        <a class="nav-item nav-link text-light" id="nav-search2-tab" data-toggle="tab" href="#nav-search2" role="tab"
+           aria-controls="nav-search2" aria-selected="false">유튜브 검색</a>
+        <a class="nav-item nav-link text-light" id="nav-mypage2-tab" data-toggle="tab" href="#nav-mypage2" role="tab"
+           aria-controls="nav-mypage2" aria-selected="false">마이페이지</a>
+        <a class="nav-item nav-link text-light" id="nav-board2-tab" data-toggle="tab" href="#nav-board2" role="tab"
+           aria-controls="nav-board2" aria-selected="false">게시판</a>
+        <a class="nav-item nav-link text-light" id="nav-admin2-tab" data-toggle="tab" href="#nav-admin2" role="tab"
+           aria-controls="nav-admin2" aria-selected="false">관리자</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home2" role="tabpanel" aria-labelledby="nav-home2-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <img src="ppt/wuyako-home.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-about2" role="tabpanel" aria-labelledby="nav-about2-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <img src="ppt/wuyako-about.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-game2" role="tabpanel" aria-labelledby="nav-game2-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <h5 class="text-left mt-1">
+            <li>무인주문기 체험을 하며 원리를 학습할 수 있는 페이지</li>
+          </h5>
+          <h6 class="text-left">-지시사항을 이행하게끔 도와주는 포인터를 자바 스크립트로 구현</h6>
+          <h6 class="text-left">-게임 시작 시, 난수로 이루어진 코드 부여</h6>
+          <h6 class="text-left">-게임 종료 후, 코드는 삭제되나 회원일 경우 마이페이지에 결과 저장</h6>
+          <h6 class="text-left">-TTS API를 사용해 텍스트를 음성으로 치환시켜주는 기능 구현</h6>
+          <h6 class="text-left">-무인주문기 체험을 위한 UI 구현</h6>
+          <h6 class="text-left">-중복을 제거한 로직으로 매 게임마다 메뉴 배치가 바뀜</h6>
+          <h6 class="text-left">-Selenium을 이용한 실시간 메뉴 업데이트 가능</h6>
+          <h6 class="text-left">-팝업으로 추가 정보 전달</h6>
+          <h6 class="text-left">-최종 결과를 확인할 수 있는 페이지 제공</h6>
+          <h6 class="text-left">-음성, 문자인식 검색기능 제공</h6>
+          <h6 class="text-left">-가까운 매장 찾기, 지도 찾기 기능 제공</h6>
+          <img src="ppt/wuyako-game1.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-search2" role="tabpanel" aria-labelledby="nav-search2-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <h5 class="text-left mt-1">
+            <li>유투브 검색을 하며 더 많은 정보를 접할 수 있는 페이지</li>
+          </h5>
+          <h6 class="text-left">-구글 디벨로퍼스 API</h6>
+          <h6 class="text-left">-키워드로 유튜브 영상 실시간검색 가능, 더 많은 정보에 접근 가능</h6>
+          <h6 class="text-left">-페이징 기능으로 편리한 탐색 기능</h6>
+          <img src="ppt/wuyako-youtube.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-mypage2" role="tabpanel" aria-labelledby="nav-mypage2-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <img src="ppt/wuyako-mypage.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-board2" role="tabpanel" aria-labelledby="nav-board2-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-5 my">
+          <h5 class="text-left mt-1">
+            <li>회원들이 자유롭게 글을 올릴 수 있는 자유게시판</li>
+          </h5>
+          <h6 class="text-left">-페이징 기법을 통한 게시판 글 목록 및 페이지 </h6>
+          <h6 class="text-left">-네비게이터와 검색기능 구현</h6>
+          <h6 class="text-left">-댓글 등록 기능 및 삭제, 수정 기능 구현</h6>
+          <h6 class="text-left">-관리자의 답변 작성 유/무 확인 기능</h6>
+          <h6 class="text-left">-썸머노트를 활용하여 이미지를 첨부한 게시글 등록이 가능</h6>
+          <img src="ppt/wuyako-freeboard.png" width="100%">
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-admin2" role="tabpanel" aria-labelledby="nav-admin2-tab">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar p-3 mb-4 my">
+          <h5 class="text-left mt-1">
+            <li>사이트 관리, 회원관리, 통계 확인을 할 수 있는 관리자 페이지</li>
+          </h5>
+          <h6 class="text-left">-스케줄러를 활용, 매일 자정에 방문자 수 업데이트</h6>
+          <h6 class="text-left">-유저관리를 통한 불량 유저차단 및 복원 가능</h6>
+          <h6 class="text-left">-차트 JS를 이용한 최근 한달 방문자 수 및 성별 누적 통계</h6>
+          <h6 class="text-left">-연령대별 회원 수 통계</h6>
+          <h6 class="text-left">-관리자가 게시판 관리 및 답변 작성 가능</h6>
+          <img src="ppt/wuyako-admin.png" width="100%">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-2 mg my" id="action16">
+      <img src="img/camera.png">&nbsp;WUYAKO 시연영상
+      <h5 class="text-center mt-1">* 우측 상단의 <img src="img/list.png" width="50" height="50"> 표시를 눌러 전체 영상을 감상하세요!</h5>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mx-auto scrollBar-lg pr-5 pl-5 mb-5 my">
+      <iframe width="100%" height="450"
+              src="https://www.youtube.com/embed/videoseries?list=PLj4yBzAaL0HgU9M_c5uPf_fdN128dtkbl" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      ​
+    </div>
+    <!-- 		    git to hell -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-5 pt-5 pb-4 mg my" id="action17">
+      Study. 지옥으로 가는 git
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-4 mg my">
+      : 버전관리 툴 git을 토대로 한 프로그래밍 스터디
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-3 my">
+      <h5>&ldquo;버전관리로 프로그래밍 공부도 하고,</h5>
+      <h5>gitHub 잔디밭까지 관리하기!&rdquo;</h5>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-4 my">
+      <a href="gitToHell.html" class="btn btn-outline-light btn-lg">
+        <img src="img/fire.png"><img src="img/fire.png"><img src="img/fire.png">
+        click!
+        <img src="img/fire.png"><img src="img/fire.png"><img src="img/fire.png">
+      </a>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my">
+      <div class="row mt-1 pl-2 pr-2">
+        <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12 mx-auto scrollBar mb-2 my">
+          <div class="contents bg-dark text-light text-left">
+            C:\Users\user>git<br>
+            These are common Git commands used in various situations:<br>
+            start a working area (see also: git help tutorial)<br>
+            clone Clone a repository into a new directory<br>
+            init Create an empty Git repository or reinitialize an existing one<br>
+            work on the current change (see also: git help everyday)<br>
+            add Add file contents to the index<br>
+            mv Move or rename a file, a directory, or a symlink<br>
+            reset Reset current HEAD to the specified state<br>
+            rm Remove files from the working tree and from the index<br>
+            examine the history and state (see also: git help revisions)<br>
+            bisect Use binary search to find the commit that introduced a bug<br>
+            grep Print lines matching a pattern<br>
+            log Show commit logs<br>
+            show Show various types of objects<br>
+            status Show the working tree status<br>
+            grow, mark and tweak your common history<br>
+            branch List, create, or delete branches<br>
+            checkout Switch branches or restore working tree files<br>
+            commit Record changes to the repository<br>
+            diff Show changes between commits, commit and working tree, etc<br>
+            merge Join two or more development histories together<br>
+            rebase Reapply commits on top of another base tip<br>
+            tag Create, list, delete or verify a tag object signed with GPG<br>
+            collaborate (see also: git help workflows)<br>
+            fetch Download objects and refs from another repository<br>
+            pull Fetch from and integrate with another repository or a local branch<br>
+            push Update remote refs along with associated objects<br>
+            'git help -a' and 'git help -g' list available subcommands and some<br>
+            to read about a specific subcommand or concept.<br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-3 text-center my">
+  <img src="img/fire.png">
+  <img src="img/fire.png">
+  <img src="img/fire.png">
+  <img src="img/fire.png">
+  <img src="img/fire.png">
+  <img src="img/fire.png">
+</div>
 <!-- 	footer -->
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-5 mb-4 p-5 text-center my">
-		<hr>
-		<h1 class="font-weight-bold text-light mt-5" id="action18">		
-			<img src="img/logo.png" width="90" height="60" class="growup">
-				Thank You		
-			<img src="img/logo.png" width="90" height="60" class="growup">
-			<h5 class="text-light p-4 mx-auto">Copyrightⓒ2019 by ABarthDew. All pictures cannot be copied without permission.</h5>
-		</h1>
-	</div>
-	
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-5 mb-4 p-5 text-center my">
+  <hr>
+  <h1 class="font-weight-bold text-light mt-5" id="action18">
+    <img src="img/logo.png" width="90" height="60" class="growup">
+    Thank You
+    <img src="img/logo.png" width="90" height="60" class="growup">
+    <h5 class="text-light p-4 mx-auto">Copyrightⓒ2019 by ABarthDew. All pictures cannot be copied without
+      permission.</h5>
+  </h1>
+</div>
+
 </body>
 </html>
